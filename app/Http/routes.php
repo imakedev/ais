@@ -70,6 +70,15 @@ Route::get('/ais/design_trend', function(){
     return view('ais.design_trend');
 });
 
+Route::get('/ais/design_calculation', function(){
+    return view('ais.design_calculation');
+});
+
+Route::get('/ais/form_calculation', function(){
+    return view('ais.form_calculation');
+});
+    
+
 
 
 

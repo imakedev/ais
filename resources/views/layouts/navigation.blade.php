@@ -40,7 +40,7 @@
                 <ul class="nav nav-second-level ">
                     <li><a href="trend_color">Design Trend Color</a></li>
                     <li><a href="design_trend"> Design Trend</a></li>
-                    <li><a href="#">Design Calcultion</a></li>
+                    <li><a href="design_calculation">Design Calcultion</a></li>
                 </ul>
             </li>
             <li class="landing_link">
