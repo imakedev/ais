@@ -85,9 +85,6 @@ Route::get('/a', function(){
 
 /* ทั่วไป */
 
-//Route::resource('/ais/statistics', 'StatisticsController');
-
-//Route::get('/ais/statistics/index', 'StatisticsController@index');
 
 Route::resource('/ais/statistics', 'StatisticsController@search');
 
