@@ -57,8 +57,13 @@ Route::get('/ais/process_view', function(){
     return view('ais.process_view');
 });
 
-Route::get('/ais/process_view', function(){
-    return view('ais.process_view');
+
+Route::get('/ais/soot_blower', function(){
+    return view('ais.soot_blower');
+});
+
+Route::get('/ais/trend_color', function(){
+    return view('ais.trend_color');
 });
 
 Route::get('/ais/design_trend', function(){
@@ -122,4 +127,7 @@ Route::get('/ais/serverSetting/store', 'ServController@store');
 Route::get('/ais/login', function(){
     return view('ais.login');
 });
+
+
+    
 

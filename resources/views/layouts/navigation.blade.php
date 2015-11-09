@@ -30,7 +30,7 @@
                 <a href="index"><i class="fa fa-dashboard"></i><span class="nav-label">Dashboards</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class="active"><a href="trend">Trend</a></li>
-                    <li><a href="#">Soot/Blower</a></li>
+                    <li><a href="soot_blower">Soot/Blower</a></li>
                     <li><a href="process_view">Process View</a></li>
 
                 </ul>
@@ -38,7 +38,7 @@
             <li class="active">
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">ออกแบบ</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level ">
-                    <li><a href="#">Design Trend Color</a></li>
+                    <li><a href="trend_color">Design Trend Color</a></li>
                     <li><a href="design_trend"> Design Trend</a></li>
                     <li><a href="#">Design Calcultion</a></li>
                 </ul>

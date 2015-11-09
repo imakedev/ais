@@ -70,7 +70,8 @@
     <script src="/js/plugins/toastr/toastr.min.js"></script>
 
     <!-- kendo ui resource end -->
-    <script src="http://localhost/AIS2015/js/kendoCommercial/js/kendo.all.min.js"></script>
+    <script src="//kendo.cdn.telerik.com/2015.3.930/js/kendo.all.min.js"></script>
+   <!-- <script src="/js/kendoCommercial/js/kendo.all.min.js"></script> --> 
 
 
     <script>

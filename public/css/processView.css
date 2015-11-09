@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+.btnSubmit {
+    margin-top: 23px;
+}
+.slideTop{
+	margin-top: 5px;
+	
+}
+.bgBlack{
+	background:black;
+	color:white;
+	background-image: url("../img/main_01.jpg");
+}
+.k-grid table{
+	 color: white;
+}
