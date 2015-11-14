@@ -69,7 +69,7 @@
                                     <td>{{$info_emp->D0}}</td>
                                     <td class="center">
                                         <a id="btnEdit" onclick="return editBtn({{$index}})" class="btn btn-dropbox btn-xs"><i style="color: #47a447;" class="glyphicon glyphicon-edit"></i><span hidden id="id">{{$info_emp->A}}</span></a>|
-                                        <a href="{{ URL::to('/addUser/destroy',$info_emp->ZZ) }}" onclick="return confirm_del()" class="btn btn-dropbox btn-xs"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                                        <ammname_z href="{{ URL::to('/addUser/destroy',$info_emp->ZZ) }}" onclick="return confirm_del()" class="btn btn-dropbox btn-xs"><i class="glyphicon glyphicon-trash text-danger"></i></ammname_z>
                                     </td>
                                 </tr>
                             @endforeach

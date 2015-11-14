@@ -11,7 +11,9 @@
                     <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
 
                      </span>
-                    <span class="text-muted text-xs block">Amin <!-- <b class="caret"></b></span> </span> --> </a>
+                    <span class="text-muted text-xs block">Admin </span>
+                    </a>
+                        <!-- <b class="caret"></b></span> </span> -->
                     <!--
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li><a href="profile.html">Profile</a></li>
@@ -30,17 +32,17 @@
                 <a href="index"><i class="fa fa-dashboard"></i><span class="nav-label">Dashboards</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class="active"><a href="trend">Trend</a></li>
-                    <li><a href="soot_blower">Soot/Blower</a></li>
-                    <li><a href="process_view">Process View</a></li>
+                    <li><a href="{{  url('/ais/sootBlower')  }}">Soot/Blower</a></li>
+                    <li><a href="{{  url('/ais/processView')  }}">Process View</a></li>
 
                 </ul>
             </li>
             <li class="active">
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">ออกแบบ</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level ">
-                    <li><a href="trend_color">Design Trend Color</a></li>
-                    <li><a href="design_trend"> Design Trend</a></li>
-                    <li><a href="design_calculation">Design Calcultion</a></li>
+                    <li><a href="{{  url('/ais/trendColor')  }}">Design Trend Color</a></li>
+                    <li><a href="{{  url('/ais/designTrend')  }}"> Design Trend</a></li>
+                    <li><a href="{{  url('/ais/designCalculation')  }}">Design Calcultion</a></li>
                 </ul>
             </li>
             <li class="landing_link">

@@ -26,7 +26,7 @@ function addBtn() {
 
 /* btn Add in addUser */
 function editBtn(index) {
-    //alert(index);
+   // alert(index);
     var data = $('#gridUserListBody').children()[index].children;
     $('#empNo').attr('readonly', true);
     $('#empNo').val(data[1].childNodes[0].data);

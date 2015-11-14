@@ -19,7 +19,7 @@
                         <div class="dropdown-messages-box">
                             <div class="media-body ">
                                 <i class="fa fa-users"></i>
-                                <a href='statistics'>ดูข้อมูลการใช้งาน</a>
+                                <a href='{{  url('/ais/statistics')  }}'>ดูข้อมูลการใช้งาน</a>
                             </div>
                         </div>
                     </li>
@@ -28,7 +28,7 @@
                         <div class="dropdown-messages-box">
                             <div class="media-body ">
                                 <i class="fa fa-user"></i>
-                                <a href='addUser'>เพิ่มรายชื่อผู้ใช้งาน</a>
+                                <a href='{{  url('/ais/addUser')  }}'>เพิ่มรายชื่อผู้ใช้งาน</a>
                             </div>
                         </div>
                     </li>
@@ -37,7 +37,7 @@
                         <div class="dropdown-messages-box">
                             <div class="media-body ">
                                 <i class="fa fa-gears"></i>
-                                <a href='tagConfiguration'>Tag Configuration</a>
+                                <a href='{{  url('/ais/tagConfiguration')  }}'>Tag Configuration</a>
                             </div>
                         </div>
                     </li>
@@ -46,7 +46,7 @@
                         <div class="dropdown-messages-box">
                             <div class="media-body ">
                                 <i class="fa fa-gear"></i>
-                                <a href='pointConfiguration'>Point Configuration</a>
+                                <a href='{{  url('/ais/pointConfiguration')  }}'>Point Configuration</a>
                             </div>
                         </div>
                     </li>
@@ -55,7 +55,7 @@
                         <div class="dropdown-messages-box">
                             <div class="media-body ">
                                 <i class="fa fa-tasks"></i>
-                                <a href='serverSetting'>Server Setting </a>
+                                <a href='{{  url('/ais/serverSetting')  }}'>Server Setting </a>
                             </div>
                         </div>
                     </li>

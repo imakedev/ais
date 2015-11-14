@@ -11,11 +11,14 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Log;
 class TagConfigController extends Controller
 {
     public function index(){
+        Log::info("aoee test TagConfigController");
         $tags_config = TagConfigModel::orderBy('A','ASC')->paginate(12);
-        $tags_config->setPath('/ais/tagConfiguration');
+        //$tags_config->setPath('/ais/tagConfiguration');
+
         return view('ais/tagConfiguration', ['tags_config'=>$tags_config]);
     }
     /**

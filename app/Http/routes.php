@@ -12,9 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return redirect('ais/index');
 });
-
+/*
 Route::get('/hello', function () {
     return "hello";
 });
@@ -22,12 +23,16 @@ Route::get('/hello', function () {
 Route::get('welcome/hello','WelcomeController@hello');
 
 Route::get('/hello/index' ,'HelloController@index');
-
+*/
+Route::get('/ais' ,function()
+{
+    return redirect('ais/index');
+});
 Route::get('/ais/index' ,function()
 {
     return view('ais.index');
 });
-
+/*
 Route::resource('/test', 'SearchController'
 //    function(){
 //    $datas = \App\UserLoginLog::where(function($query){
@@ -44,44 +49,51 @@ Route::resource('/test', 'SearchController'
 //    return view('ais.test',compact(['datas']));
 //}
 );
+*/
+// Route::resource('articles', 'HelloController');
 
-Route::resource('articles', 'HelloController');
-
-/* Dashboard */
+/* Start Dashboard Menu */
 
 Route::get('/ais/trend', function(){
     return view('ais.trend');
 });
 
-Route::get('/ais/process_view', function(){
+Route::get('/ais/processView', function(){
     return view('ais.process_view');
 });
 
 
-Route::get('/ais/soot_blower', function(){
+Route::get('/ais/sootBlower', function(){
     return view('ais.soot_blower');
 });
+/* End Dashboard Menu */
 
-Route::get('/ais/trend_color', function(){
+/* Start Design Menu */
+Route::get('/ais/trendColor', function(){
     return view('ais.trend_color');
 });
 
-Route::get('/ais/design_trend', function(){
-    return view('ais.design_trend');
-});
+Route::resource('/ais/designTrend', 'TrendDesignController');
 
-Route::get('/ais/design_calculation', function(){
+Route::get('/ais/designTrends', 'TrendDesignController@search');
+  //  return view('ais.design_trend');
+// });
+
+Route::get('/designTrend/deleteSelect', 'TrendDesignController@deleteSelect');
+
+
+Route::get('/ais/designCalculation', function(){
     return view('ais.design_calculation');
 });
 
-Route::get('/ais/form_calculation', function(){
+Route::get('/ais/formCalculation', function(){
     return view('ais.form_calculation');
 });
-    
+/* End Design Menu */
 
 
 
-
+/*
 Route::get('ais/test', ('SearchController@index'));
 
 Route::get('/ais/test2' ,('SearchController@test'));
@@ -91,8 +103,8 @@ Route::get('/edit/{user_login_log_id}', ('searchController@edit'));
 Route::get('/a', function(){
     return view('ais.new');
 });
-
-/* ทั่วไป */
+*/
+/* Start General Menu */
 
 
 Route::resource('/ais/statistics', 'StatisticsController@search');
@@ -128,12 +140,33 @@ Route::get('/pointConfiguration/delete/{A}', 'PointConfigController@destroy');
 Route::resource('/ais/serverSetting', 'ServController');
 
 Route::get('/ais/serverSetting/store', 'ServController@store');
-
+/* End General Menu */
 
 Route::get('/ais/login', function(){
     return view('ais.login');
 });
 
-
+// Ajax
+Route::get('/ajax/mmtrends/list','Ajax\TrendDesignAjax@listMmTrend');
+Route::get('/ajax/mmtrend/get','Ajax\TrendDesignAjax@getMmTrend');
+Route::get('/ajax/mmname/get','Ajax\TrendDesignAjax@getMmname');
+Route::post('/ajax/mmtrend/post','Ajax\TrendDesignAjax@postMmTrend');
+Route::post('/ajax/mmname/post','Ajax\TrendDesignAjax@postMmname');
+Route::delete('/ajax/mmname/delete','Ajax\TrendDesignAjax@deleteMmname');
+Route::delete('/ajax/mmtrend/delete','Ajax\TrendDesignAjax@deleteMmtrend');
+/*
+Route::get('/ajax/get', function () {
+    // pass back some data
+    $data   = array('value' => 'some data');
+    // return a JSON response
+    return  Response::json($data);
+});
+*/
+Route::post('/ajax/post', function () {
+    // pass back some data, along with the original data, just to prove it was received
+    $data   = array('value' => 'some data', 'input' => Request::input());
+    // return a JSON response
+    return  Response::json($data);
+});
     
 

@@ -28,8 +28,8 @@
     <div class="ibox-content">
             <div class="row bgParam">
 	            <div class="col-xs-7">
-		            <a class="btn btn-primary  btn-sm" href='form_calculation'>Add </a> 
-		            <a class="btn btn-w-m btn-warning  btn-sm" href='form_calculation'>Edit </a>
+		            <a class="btn btn-primary  btn-sm" href='formCalculation'>Add </a>
+		            <a class="btn btn-w-m btn-warning  btn-sm" href='formCalculation'>Edit </a>
 		            <a class="btn btn-w-m btn-danger  btn-sm">Delete </a>
 	            </div>
 	            <div class='col-xs-5'>

@@ -30,7 +30,7 @@
            <!-- btn start -->
              <div class="row bgParam">
 	            <div class="col-xs-8">
-		            <a class="btn btn-primary  btn-sm" href='design_calculation'>Back </a> 
+		            <a class="btn btn-primary  btn-sm" href='designCalculation'>Back </a>
 		            
 	            </div>
 	            <div class="col-xs-4"><h5 class='titleForm'>Calculation Management</h5></div>
@@ -119,7 +119,7 @@
             <!-- btn start -->
              <div class="row bgParam">
 	            <div class="col-xs-12">
-		            <a class="btn btn-primary  btn-sm" href='index.php?page=form_calculation'>Clone </a> 
+		            <a class="btn btn-primary  btn-sm" href='index.php?page=formCalculation'>Clone </a>
 		            <a class="btn btn-w-m btn-warning  btn-sm">Clear </a>
 		            <a class="btn btn-w-m btn-danger  btn-sm">Change </a>
 		            <a class="btn btn-w-m btn-danger  btn-sm" data-toggle="modal" id='btnAddPoint' data-target="#modalAddPoint">Add Point </a>
