@@ -120,7 +120,7 @@
                                             <div class="ibox-content">
                                                 <div class="row">
                                                     <div class="col-md-6 ">
-                                                        <a data-target="#myModalAddPoint" data-toggle="modal"
+                                                        <a onclick="displayMmtrend('add','0','0')"
                                                            class="btn btn-primary  btn-sm">Add Point</a>
                                                       <!--   <a class="btn btn-w-m btn-warning  btn-sm">Edit Point</a> -->
                                                         <a onclick="displayMmtrendDelete('deleteAll','0')"  class="btn btn-w-m btn-danger  btn-sm">Delete Point</a>
@@ -272,7 +272,12 @@
                                         <button data-dismiss="modal" class="close" type="button"><span
                                                     aria-hidden="true">×</span><span class="sr-only">Close</span>
                                         </button>
-                                        <h5 class="modal-title">เพิ่ม Point ไปที่ Trend001</h5>
+                                        <h5 id="mmtrend_tilte_section" class="modal-title">
+                                            <!--
+                                            เพิ่ม Point ไปที่ Trend001
+                                            -->
+                                        </h5>
+
                                     </div>
                                     <div class="modal-body">
                                         <!-- Table show point start-->
@@ -280,6 +285,9 @@
                                             <div class="ibox float-e-margins">
                                                 <div class="ibox-content">
                                                     <div class="row">
+                                                        <input type="hidden" id="mmtrend_mode" />
+                                                        <input type="hidden" id="mmtrend_point_zz" />
+                                                        <input type="hidden" id="mmtrend_point_h" />
                                                         <div class="col-md-3 lableDropdownList">MMPlant</div>
                                                         <div class="col-md-3">
                                                             <select name="account" class="form-control m-b">
@@ -293,17 +301,17 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-3 ">
-                                                            <input type="email" placeholder="ค้นหา"
+                                                            <input id="keyword" type="text" placeholder="ค้นหา"
                                                                    class="form-control ">
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <bunton class='btn btn-primary  btn-sm'>ค้นหา</bunton>
+                                                            <bunton onclick="searchMmpoint()" class='btn btn-primary  btn-sm' type="button">ค้นหา</bunton>
                                                         </div>
                                                     </div>
                                                     <div id="editable_wrapper"
                                                          class="dataTables_wrapper form-inline dt-bootstrap">
                                                         <div class="row">
-                                                            <div class="col-sm-12 table-responsive">
+                                                            <div id="point_list_section" class="col-sm-12 table-responsive">
                                                                 <table id="editable"
                                                                        class="table table-striped table-bordered table-hover  dataTable"
                                                                        role="grid" aria-describedby="editable_info">
@@ -373,14 +381,8 @@
                                                                     <tbody>
                                                                     <tr class="gradeA odd" role="row">
                                                                         <td class="sorting_1">
-                                                                            <div class="icheckbox_square-green "
-                                                                                 style="position: relative;">
-                                                                                <input type="checkbox" name="input[]"
-                                                                                       class="i-checks" checked=""
-                                                                                       style="position: absolute; opacity: 0;">
-                                                                                <ins class="iCheck-helper"
-                                                                                     style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
-                                                                            </div>
+                                                                                <input type="radio" name="point_ids_input[]"
+                                                                                       class="i-checks">
                                                                         </td>
                                                                         <td>Point001</td>
                                                                         <td>40HF02U066</td>
@@ -392,73 +394,11 @@
                                                                         <td>0</td>
                                                                         <td>435</td>
                                                                     </tr>
-                                                                    <tr class="gradeA even" role="row">
-                                                                        <td class="sorting_1">
-                                                                            <div class="icheckbox_square-green "
-                                                                                 style="position: relative;">
-                                                                                <input type="checkbox" name="input[]"
-                                                                                       class="i-checks" checked=""
-                                                                                       style="position: absolute; opacity: 0;">
-                                                                                <ins class="iCheck-helper"
-                                                                                     style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>Point002</td>
-                                                                        <td>40HF02U066</td>
-                                                                        <td>50HF02U066</td>
-                                                                        <td>60HF02U066</td>
-                                                                        <td>70HF02U066</td>
-                                                                        <td>N/A</td>
-                                                                        <td>2</td>
-                                                                        <td>0</td>
-                                                                        <td>432</td>
-
-                                                                    </tr>
-                                                                    <tr class="gradeA odd" role="row">
-                                                                        <td class="sorting_1">
-                                                                            <div class="icheckbox_square-green "
-                                                                                 style="position: relative;">
-                                                                                <input type="checkbox" name="input[]"
-                                                                                       class="i-checks" checked=""
-                                                                                       style="position: absolute; opacity: 0;">
-                                                                                <ins class="iCheck-helper"
-                                                                                     style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>Point003</td>
-                                                                        <td>40HF02U066</td>
-                                                                        <td>50HF02U066</td>
-                                                                        <td>60HF02U066</td>
-                                                                        <td>70HF02U066</td>
-                                                                        <td>N/A</td>
-                                                                        <td>2</td>
-                                                                        <td>0</td>
-                                                                        <td>433</td>
-                                                                    </tr>
-                                                                    <tr class="gradeA even" role="row">
-                                                                        <td class="sorting_1">
-                                                                            <div class="icheckbox_square-green "
-                                                                                 style="position: relative;">
-                                                                                <input type="checkbox" name="input[]"
-                                                                                       class="i-checks" checked=""
-                                                                                       style="position: absolute; opacity: 0;">
-                                                                                <ins class="iCheck-helper"
-                                                                                     style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>Point004</td>
-                                                                        <td>40HF02U066</td>
-                                                                        <td>50HF02U066</td>
-                                                                        <td>60HF02U066</td>
-                                                                        <td>70HF02U066</td>
-                                                                        <td>N/A</td>
-                                                                        <td>2</td>
-                                                                        <td>0</td>
-                                                                        <td>436</td>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
+                                                        <!--
                                                         <div class="row">
                                                             <div class="col-sm-5">
                                                                 <div class="dataTables_info" id="editable_info"
@@ -508,6 +448,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        -->
                                                     </div>
                                                     <div class='col-md-2'>
                                                         <input type="email" placeholder="Max" class="form-control ">
@@ -526,7 +467,7 @@
                                     </div>
                                     <div class="modal-footer" style="padding: 10px 5px;">
                                         <button data-dismiss="modal" class="btn btn-white" type="button">ยกเลิก</button>
-                                        <button class="btn btn-primary" type="button">เพิ่ม</button>
+                                        <button class="btn btn-primary" onclick="doActionMmtrend()" type="button"><span id="button_mmtrend_mode_section"/></button>
                                     </div>
                                 </div>
                             </div>

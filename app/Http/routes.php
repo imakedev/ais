@@ -154,6 +154,8 @@ Route::post('/ajax/mmtrend/post','Ajax\TrendDesignAjax@postMmTrend');
 Route::post('/ajax/mmname/post','Ajax\TrendDesignAjax@postMmname');
 Route::delete('/ajax/mmname/delete','Ajax\TrendDesignAjax@deleteMmname');
 Route::delete('/ajax/mmtrend/delete','Ajax\TrendDesignAjax@deleteMmtrend');
+
+Route::post('/ajax/mmpoint/search','Ajax\TrendDesignAjax@searchMmpoint');
 /*
 Route::get('/ajax/get', function () {
     // pass back some data
