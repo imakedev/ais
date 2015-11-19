@@ -108,7 +108,7 @@
 <!-- Table trend end-->
 
                                     <!-- Table show point start-->
-                                    <div id="trend_element" class="col-lg-12" style="display:block" >
+                                    <div id="trend_element" class="col-lg-12" style="display:none" >
                                         <div class="ibox float-e-margins">
                                             <div class="ibox-title">
                                                 <h5 id="trend_element_header">
@@ -127,7 +127,7 @@
                                                     </div>
                                                     <div class="col-md-3 lableDropdownList">MMPlant</div>
                                                     <div class="col-md-3">
-                                                        <select name="account" class="form-control m-b">
+                                                        <select id="mmplant" class="form-control m-b">
                                                             <option>MM04</option>
                                                             <option>MM05</option>
                                                             <option>MM06</option>
@@ -290,14 +290,18 @@
                                                         <input type="hidden" id="mmtrend_point_h" />
                                                         <div class="col-md-3 lableDropdownList">MMPlant</div>
                                                         <div class="col-md-3">
-                                                            <select name="account" class="form-control m-b">
-                                                                <option>MM04</option>
-                                                                <option>MM05</option>
-                                                                <option>MM06</option>
-                                                                <option>MM07</option>
-                                                                <option>MM04-07</option>
-                                                                <option>My Calculation</option>
-                                                                <option>All Calculation</option>
+                                                            <select id="mmtrend_table_B" class="form-control m-b">
+                                                                <option value="4">MM04</option>
+                                                                <option value="5">MM05</option>
+                                                                <option value="6">MM06</option>
+                                                                <option value="7">MM07</option>
+                                                                <!--
+                                                                <option value="">MM04-07</option>
+
+                                                                <option value="0">My Calculation</option>
+
+                                                                <option value="5">All Calculation</option>
+                                                                -->
                                                             </select>
                                                         </div>
                                                         <div class="col-md-3 ">
@@ -451,13 +455,16 @@
                                                         -->
                                                     </div>
                                                     <div class='col-md-2'>
-                                                        <input type="email" placeholder="Max" class="form-control ">
+                                                        <input id="mmpoint_table_G0" type="text" placeholder="Max" class="form-control ">
                                                     </div>
                                                     <div class='col-md-2'>
-                                                        <input type="email" placeholder="Min" class="form-control ">
+                                                        <input id="mmpoint_table_G1" type="text" placeholder="Min" class="form-control ">
                                                     </div>
-                                                    <div class='col-md-4 lableText'>
-                                                        หน่วยวัด: N/A
+                                                    <div class='col-md-1 lableText'>
+                                                        หน่วยวัด:
+                                                    </div>
+                                                    <div class='col-md-2 lableText'>
+                                                        <input id="mmpoint_table_F" type="text" placeholder="" class="form-control ">
                                                     </div>
                                                     <br>
                                                 </div>
