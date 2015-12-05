@@ -28,11 +28,11 @@
  -->
 <!-- Content Start--> 
 <!-- Latest compiled and minified JavaScript -->
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script> -->
-<script src="/Controller/cMainTrend.js"></script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+ <script src="/Controller/cMainTrend.js"></script>
+<!-- 
 <script src="/Controller/cTrend.js"></script>
-
+ -->
 <link href="/css/trend.css" rel="stylesheet"> 
 <script src="/js/jquery.tooltipCustom.js"></script>
 <link href="/css/tooltip.css" rel="stylesheet"> 
@@ -51,7 +51,7 @@
 
     <ul class="nav nav-tabs" id='tabTrendTitle'>
         
-        <li class="titleTab pull-right" ><a  href="#trendSeting" data-toggle="tab" aria-expanded="false"><b><span class='btnPlus fa fa-plus-circle'></span></b></a></li>
+        <li class=" pull-right" ><a  href="#trendSeting" data-toggle="tab" aria-expanded="false"><b><span class='btnPlus fa fa-plus-circle'></span></b></a></li>
      
        
     
@@ -74,17 +74,18 @@
 </div>
 
 
+<button type="button" data-toggle="modal" data-target="#setTimeScale22"  class="btn btn-warning  btn-sm  ">
+    <i class="fa fa-cogs"></i>
+</button>
+
 <!-- Content End-->  
-
-
-
 
 
 
 
 <!-- Modal Start -->
 
-<div aria-hidden="true" role="dialog" tabindex="-1" id="editTrendPointModal" class="modal inmodal in" >
+<div aria-hidden="true" role="dialog" tabindex="-1" id="setTimeScale22" class="modal inmodal in" >
 <div class="modal-dialog modal-lg">
 <div class="modal-content animated flipInY">
 <div class="modal-header">
@@ -93,41 +94,49 @@
       
    </div>
   <div class="modal-body">
-  	            <div class='row'>
-                    <div id="trendNameArea" class="col-xs-10  displaynone " style="display: block;">
-                      Trend Name <i class="glyphicon glyphicon-menu-right"></i> 
-                      <span id="editTrendName">SH-RH Temperature Control</span>
-                    </div>
-                    
-                    <div class="col-xs-offset-0 col-xs-2 ">
-                            <div class="displaynone" id="listAllUnitArea" style="display: block;">
-                                <select name="editUnit" id="editUnit" class="form-control input-sm">
-                                    <option value="All">All Point</option>
-                                    <option value="4">MM04</option>
-                                    <option value="5">MM05</option>
-                                    <option value="6">MM06</option>
-                                    <option value="7">MM07</option>
-                                   
-                                </select> 
-                           </div>
-                    </div>
-               </div>
-               
-                <div id='editTrendPointArea'>
-                    
-                </div>
+  	
+                   
+                            <div id='editTrendPointArea'>
+                                
+                            </div>
                     
                     
       </div>
      <div class="modal-footer">
      <button data-dismiss="modal" class="btn btn-white" type="button">ยกเลิก</button>
-    <button class="btn btn-primary" id='btnEditPlotGraph' type="button">ตกลง</button>
+    <button class="btn btn-primary" type="button">ตกลง</button>
   </div>
  </div>
 </div>
 </div>
 
 <!-- Modal End -->
+
+
+
+
+
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
+
+<!-- Small modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
    
 
             
