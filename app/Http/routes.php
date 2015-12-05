@@ -172,3 +172,32 @@ Route::post('/ajax/post', function () {
 });
     
 
+
+    /*trend seting start*/
+    // Route::post('/trendSetting/post','trendSetingController@postMember');
+    Route::get('/ais/trendSetting/getAllTrendGroup/','trendSetingController@getAllTrendGroup');
+    Route::get('/ais/trendSetting/getTrendByGroup/{id}','trendSetingController@getTrendByGroup');
+    Route::get('/ais/trendSetting/getPointByTrend/{trendID}/{unitID}','trendSetingController@getPointByTrend');
+    Route::get('/ais/trendSetting/getPointByPointID/{pontID}','trendSetingController@getPointByPointID');
+    Route::post('/ais/trendSetting/getDataByQuery/{query}','trendSetingController@getDataByQuery');
+    
+    // Route::get('/trendSetting/edit/','trendSetingController@editMember');
+    
+    /*trend seting start*/
+    
+    /*trend service start*/
+    Route::get('/ais/serviceTrend/getDataHru/{point}/{unit}/{startTime}/{endTime}/','serviceTrendController@getDataHru');
+    Route::get('/ais/serviceTrend/readDataHru/','serviceTrendController@readDataHru');
+    
+    
+    Route::get('/ais/serviceTrend/getDataDayu/{point}/{unit}/{startTime}/{endTime}/','serviceTrendController@getDataDayu');
+    Route::get('/ais/serviceTrend/readDataDayu/','serviceTrendController@readDataDayu');
+    
+    
+    //Test
+    
+    Route::get('/ais/Test/trendDashboard', function(){
+        return view('ais.test-trend');
+    });
+        /*trend service end*/
+    
