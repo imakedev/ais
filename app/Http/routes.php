@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes TEST004
+| Application Routes TEST005
 |--------------------------------------------------------------------------
 |
 | Here is where you can register all of the routes for an application.
