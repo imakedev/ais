@@ -9,13 +9,13 @@
 
             
             <div class='row scaleTimeMenu '>
-                <div class='col-md-3 '>
+                <div class='col-md-2 '>
                    <!--<div class='col-md-2 basicSlideArea'>
                     slide start -->
                     <div class='scaleTimeMenuRightArea' id='scaleTimeMenuRightArea-<?=$_GET['paramTrendID']?>'>
                         <!-- <div id="keypress" ></div> -->
                     </div>
-                    <div class='scaleTimeMenuLeftArea' id='scaleTimeMenuLeftArea-<?=$_GET['paramTrendID']?>'>
+                    <div class='scaleTimeMenuLeftArea displaynone' id='scaleTimeMenuLeftArea-<?=$_GET['paramTrendID']?>'>
                         4 Hour
                     </div>
                 	 
@@ -143,7 +143,7 @@
                 
                 <!-- date display -->
                 </div>
-                 <div class='col-md-5'>
+                 <div class='col-md-6'>
                     <!-- date display -->
                     <div class="downloadSettingArea">
                         <button type="button" class="btn btn-primary btn-sm  " data-container="body" 

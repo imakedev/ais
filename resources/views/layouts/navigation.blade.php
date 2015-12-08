@@ -38,7 +38,7 @@
                 </ul>
             </li>
             <li class="active">
-                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">ออกแบบ</span><span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Design</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level ">
                     <li><a href="{{  url('/ais/trendColor')  }}">Design Trend Color</a></li>
                     <li><a href="{{  url('/ais/designTrend')  }}"> Design Trend</a></li>

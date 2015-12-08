@@ -14,3 +14,12 @@
 .k-grid table{
 	 color: white;
 }
+.k-grid-header .k-header{
+	padding:0px;
+}
+.form-control, .single-line{
+	padding: 2px;	
+}
+.k-picker-wrap .k-icon {
+    margin-top: 5px;
+}

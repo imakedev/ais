@@ -71,15 +71,15 @@
                                     	                 
                                                                
                                                             <div class="form-group">
-                                                                <label class="control-label" for="product_name">PCV</label>
-                                                                <select class="form-control input-sm bgBlack" id='pcv' name="pcv">
+                                                                <label class="control-label" for="paramPcv">PCV</label>
+                                                                <select class="form-control input-sm bgBlack" id='paramPcv' name="paramPcv">
                                                                     <option value='fgd'>FGD</option>
                                                                     <option value='plantow'>PLANTOVV</option>
                                                                     <option value='steam'>STEAM</option>
                                                                     <option value='turbine'>TURBINE</option>
                                                                     
                                                                     
-                                                                    <option value='steam47'>STEAM</option>
+                                                                    <option value='steam47' selected='selected'>STEAM</option>
                                                                     <option value='pulv'>PULV</option>
                                                                     <option value='fring'>FRING</option>
                                                                     
@@ -94,12 +94,12 @@
                                                                
                                                             <div class="form-group">
                                                                 <label class="control-label" for="product_name">Unit</label>
-                                                                <select class="form-control input-sm bgBlack" name="">
-                                                                    <option>MM03</option>
-                                                                    <option>MM04</option>
-                                                                    <option>MM05</option>
-                                                                    <option>MM06</option>
-                                                                    <option>MM07</option>
+                                                                <select class="form-control input-sm bgBlack" name="unit" id='unit'>
+                                                                    <option value='MM03'>MM03</option>
+                                                                    <option value='MM04'>MM04</option>
+                                                                    <option value='MM05'>MM05</option>
+                                                                    <option value='MM06'>MM06</option>
+                                                                    <option value='MM07'>MM07</option>
                                                                    
                                                                 </select> 
                                                             </div>
@@ -111,33 +111,42 @@
                                     	                     <div class="form-group">
                                                                 <label class="control-label" for="product_name">Date</label>
                                                                
-                                                                <div class="input-group date ">
-                                                                    <span class="input-group-addon bgBlack"><i class="fa fa-calendar"></i></span><input type="text" class="form-control input-sm bgBlack" value="03/04/2014">
+                                                                <div class="input-group  ">
+                                                                   <input type="text" class="form-control input-sm bgBlack" id='paramDate' value="2015-11-01">
                                                                 </div>
                                                                  
                                                             </div>
                                                            
                                     	               </div>
                                     	               <div class="col-xs-1">
-                                    	               
+                                    	               <!--
                                     	                         <div class="form-group">
-                                                                    <label class="control-label" for="product_name">Hour</label>
-                                                                   
+                                                                    <label class="control-label" for="paramHour">Hour</label>
+                                                                    
                                                                     <div class="input-group ">
-                                                                        <input type='text' class='input-xs form-control bgBlack' name='' value='0.00'>
+                                                                        <input type='text' class='input-xs form-control bgBlack' id='paramHour' name='paramHour' value='0.00'>
                                                                     </div>
+                                                                    
+                                                                    
                                                                 </div>
                                                             
-                                                               
+                                                            -->    
+                                                             <div class="form-group">
+                                                                    <label class="control-label" for="paramHour">Hour</label>
+                                                                   
+                                                                    <div class="input-group ">
+                                                                        <input type='text' class='input-sm form-control bgBlack' name='paramHour' id='paramHour' value='0.00'>
+                                                                    </div>
+                                                                </div>
                                                            
                                     	               </div>
                                     	               <div class="col-xs-1"   >
                                     	                 
                                                                  <div class="form-group">
-                                                                    <label class="control-label" for="product_name">Manate</label>
+                                                                    <label class="control-label" for="paramMinute">Minute</label>
                                                                    
                                                                     <div class="input-group ">
-                                                                        <input type='text' class='input-sm form-control bgBlack' name='' value='0.00'>
+                                                                        <input type='text' class='input-sm form-control bgBlack' name='paramMinute' id='paramMinute' value='0.00'>
                                                                     </div>
                                                                 </div>
                                                            
@@ -148,7 +157,7 @@
                                                                     <label class="control-label" for="product_name">Span T</label>
                                                                    
                                                                     <div class="input-group ">
-                                                                        <input type='text' class='input-sm form-control bgBlack' name='' value='0.00'>
+                                                                        <input type='text' class='input-sm form-control bgBlack' name='paramSpanTime' id='paramSpanTime' value='0.00'>
                                                                     </div>
                                                                 </div>
                                                            
@@ -157,7 +166,7 @@
                                     	              
                                 	                   <div class="col-xs-2">
                                        
-                                                            <a class="btn btn-primary  btn-sm btnSubmit" href="#">แสดง </a>
+                                                            <a class="btn btn-primary  btn-sm btnSubmit" id='btnSubmit' href="#">แสดง </a>
                                                             <button class="btn btn-warning btn-sm  btnSubmit" type="button">
                                                                 <i class="fa fa-download"></i>&nbsp;&nbsp;
                                                                
@@ -180,7 +189,10 @@
                                          <tr>
                                             
                                              <td>
-                                             		ข้อมูลวันที่ 9 - 10 กันยายน 2558 เวลา13.00-14.00น.
+                                                <div id='disPlayDateTimeArea'>
+                                                    
+                                                </div>
+                                             		
                                              </td>
                                             
                                          </tr>

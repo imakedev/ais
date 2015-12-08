@@ -7,6 +7,22 @@ $(document).ready(function(){
        
     });
 	
+	//set current hour,minute
+
+	$("#paramDate").val(currentDate());
+	$("#paramHour").val(currentH2Time());
+	$("#paramMinute").val(currentMinuteTime());
+	//binding data kendoui
+	$("#paramDate").kendoDatePicker({
+		 theme: "Moonlight",
+		 format: "yyyy-MM-dd",
+		 
+	 });
+	$("#paramDate").css({"color":"white"});
+	$("#paramPcv").kendoDropDownList();
+	$("#unit").kendoDropDownList();
+	
+	
 var listEventFn=function(){
 	$("#gridEventList").kendoGrid({
        // height: 400,
@@ -31,9 +47,24 @@ var listEventFn=function(){
 	});
 };
 
-	$(".btnSubmit").click(function(){
-		//alert($("#pcv").val());
-		var pcvName=$("#pcv").val();
+	$("#btnSubmit").click(function(){
+		
+		
+		var paramSpanTime = $("#paramSpanTime").val();
+		var paramManate = $("#paramManate").val();
+		var paramHour = $("#paramHour").val();
+		var paramDate = $("#paramDate").val();
+		var paramPcv = $("#paramPcv").val();
+		//alert(paramDate);
+		/*
+		alert(paramSpanTime);
+		alert(paramManate);
+		alert(paramHour);
+		alert(paramDate);
+		alert(paramPcv);
+		*/
+		
+		var pcvName=$("#paramPcv").val();
 		$.ajax({
 			url:"/processView/"+pcvName+".html",
 			type:"get",
@@ -41,9 +72,18 @@ var listEventFn=function(){
 			async:false,
 			success:function(data){
 				$("#processViewArea").html(data);
+				
+				
+				
+				if(pcvName=='steam47'){
+					mainSteam47Fn(paramDate);
+				}
 				listEventFn();
 			}
 		});
 		
 	});
+	
+	
+
 });

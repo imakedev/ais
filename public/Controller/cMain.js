@@ -91,6 +91,16 @@ function currentHTime(){
 	 var strDate = d.getHours() + ":00:00";
 	 return  strDate;
 }
+function currentH2Time(){
+	 var d = new Date();
+	 var strDate = d.getHours() + ":00";
+	 return  strDate;
+}
+function currentMinuteTime(){
+	 var d = new Date();
+	 var strDate = d.getMinutes() + ":00";
+	 return  strDate;
+}
 
 //==================end====================================
 
