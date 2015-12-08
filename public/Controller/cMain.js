@@ -333,6 +333,39 @@ function datetimeCurrentHFn(datetime){
 	return datetimeHis;
 
 }
+//slider start
+
+function slideScaleFn(paramTrendID,startStep){
+	
+	//alert("slideScaleFn");
+	
+	$("#scaleTimeMenuRightArea-"+paramTrendID+"").html("<div id=\"keypress-"+paramTrendID+"\" ></div>");
+	var slider = document.getElementById("keypress-"+paramTrendID+"");
+
+	noUiSlider.create(slider, {
+		start: startStep,
+		step: 4,
+		range: {
+			'min': 0,
+			//'20%': [ 300, 100 ],
+			//'50%': [ 800, 50 ],
+			'max': 24
+		}
+	});
+	
+	slider.noUiSlider.on('update', function( values, handle ) {
+		console.log(values[handle]);
+		$("#expandFocus-"+paramTrendID+"").val(values[handle]+" Hour");
+		$("#scaleTimeMenuLeftArea-"+paramTrendID+"").html(values[handle]+" Hour");
+		
+			setTimeout(function(){
+				readJsonExpandFocusFn(values[handle],paramTrendID);
+			},1000);
+		
+			
+	});
+}
+	//slider end
 
 //==================end====================================
 //function display expand focus start

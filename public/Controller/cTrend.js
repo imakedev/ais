@@ -288,7 +288,7 @@ function tooltipCustom(){
 		
 		$("#listPointLeftArea-"+paramTrendID).empty();
 		$.each(data,function(index,indexEntry){
-		
+
 			//listLeftPoint.php
 			/*parameter pointname,point,tag,unit,max,min,mmunit*/
 		
@@ -435,63 +435,6 @@ function tooltipCustom(){
 	
 	
 	
-	//EDIT POINT
-	 $("#editTrendPoint").off("click");
-	$("#editTrendPoint").on("click",function(){
-		
-		//alert("editTrendPoint");
-		//$("#paramTrendNameEmbed").val();
-		//$("#paramUnitEmbed").val();
-		//$("#trendTabActive").val();
-
-		
-		var paramTrendName=$("#paramTrendNameEmbed").val();
-		var paramUnit=$("#paramUnitEmbed").val();
-		var paramTrendID=$("#trendTabActive").val();
-		
-		$("#editTrendName").html(paramTrendName);
-		//editUnit
-		//check selected option
-		var val1 =paramUnit;
-		$("select#editUnit option").filter(function() {
-		    return $(this).val() == val1; 
-		}).prop('selected', true);
-	
-	 	//$("#editUnit").kendoDropDownList();
-
-		editTrendPointFn(paramTrendID,paramUnit);
-
-		var paramPointId=getDataFromPointEmbed("pointId");
-		paramPointId=paramPointId.split(",");
-		for(var i=0;i<paramPointId.length;i++){
-			//alert(paramPointId[i]);
-			pointCheckbox(paramPointId[i]);
-		}
-		
-		
-		$("select#editUnit").change(function(){
-			editTrendPointFn(paramTrendID,$(this).val());
-			
-			 $("#paramUnitEmbed").remove();
-			  var paramPoint="";
-			  paramPoint+="<input type='hidden' id='paramUnitEmbed' name='paramUnitEmbed' value='"+$(this).val()+"'>";
-			  $("body").append(paramPoint);
-			  
-			
-		});
-		
-		
-		
-		 $("#btnEditPlotGraph").off("click");
-		 $("#btnEditPlotGraph").click(function(){
-			   //alert("btnEditPlotGraph");
-			   //plotGraphFn('Edit');
-			   plotGraphFn();
-
-		   });
-		 
-		
-	});
 	
 	
 	function pointCheckbox(paramPointId){
@@ -820,7 +763,7 @@ function tooltipCustom(){
 	 function startUpFn(paramInitail,paramTrendID){
 			
 			
-			alert("paramTrendID="+paramTrendID);
+			
 			
 			var fromDate="";
 			var toDate="";
@@ -871,20 +814,11 @@ function tooltipCustom(){
 			//set title between for display
 			setScaleDateTimeFn(fromDate,toDate,paramTrendID);
 			//show date for left layout
-			//if( $("#paramScaleTime").val()=="Minute"){
-				
-				$("#dateInDataDisplay-"+paramTrendID).html(convertDateTh(toDate));
-				
-			//}else{
-				//$("#dateInDataDisplay").hide();	
-			//}
-			//$("#dateInDataDisplay").html(convertDateTh(toDate));
-			//hiden popver
-				
-				
-				//$("#btnScaleTimeArea").click();
-				
-				
+			
+			$("#dateInDataDisplay-"+paramTrendID).html(convertDateTh(toDate));
+			
+			//show strutre dashboard trend when load is success.
+			$("#trendContentArea").show();
 			
 				//binding scale time start	
 				 $(".btnScaleTimeArea").click("toggle",function(){
@@ -983,7 +917,9 @@ function tooltipCustom(){
 					 			}
 					 			//alert(rangHour[seek]+","+seek);
 					 			$("#expandFocus-"+paramTrendID+"").val(rangHour[seek]+" Hour");
-					 			readJsonExpandFocusFn(rangHour[seek],paramTrendID);
+					 			$("#scaleTimeMenuLeftArea-"+paramTrendID+"").text(rangHour[seek]+" Hour");
+					 			slideScaleFn(paramTrendID,rangHour[seek]);
+					 			//readJsonExpandFocusFn(rangHour[seek],paramTrendID);
 					 		}
 					 		
 					 		
@@ -1002,7 +938,9 @@ function tooltipCustom(){
 					 			}
 					 			//alert(rangHour[seek]+","+seek);
 					 			$("#expandFocus-"+paramTrendID+"").val(rangHour[seek]+" Hour");
-					 			readJsonExpandFocusFn(rangHour[seek],paramTrendID);
+					 			$("#scaleTimeMenuLeftArea-"+paramTrendID+"").text(rangHour[seek]+" Hour");
+					 			slideScaleFn(paramTrendID,rangHour[seek]);
+					 			//readJsonExpandFocusFn(rangHour[seek],paramTrendID);
 					 		}
 					 	});
 					 //focus expand end
@@ -1021,7 +959,7 @@ function tooltipCustom(){
 					});
 					
 					
-					readJsonIncreaseStartTimeDisplayFn
+			
 					//reduce start time end
 					
 					//increase start time start
@@ -1052,39 +990,99 @@ function tooltipCustom(){
 					});
 					
 					//increase start day end
-					 	
-					
 					
 					//slider start
-					
-					
-					
-					
-					
-					$("#scaleTimeMenuRightArea-"+paramTrendID+"").html("<div id=\"keypress-"+paramTrendID+"\" ></div>");
-					var slider = document.getElementById("keypress-"+paramTrendID+"");
-
-					noUiSlider.create(slider, {
-						start: 4,
-						step: 4,
-						range: {
-							'min': 0,
-							//'20%': [ 300, 100 ],
-							//'50%': [ 800, 50 ],
-							'max': 24
-						}
-					});
-					
-					slider.noUiSlider.on('update', function( values, handle ) {
-						console.log(values[handle]);
-						$("#expandFocus-"+paramTrendID+"").val(values[handle]+" Hour");
-						$("#scaleTimeMenuLeftArea-"+paramTrendID+"").html(values[handle]+" Hour");
-						setTimeout(function(){
-							readJsonExpandFocusFn(values[handle],paramTrendID);
-						},3000);
-			 			
-					});
+					slideScaleFn(paramTrendID,'4','Y');
 					//slider end
+					
+					
+					
+					
+					//EDIT POINT START
+					$(".editTrendPoint").off("click");
+					$(".editTrendPoint").on("click",function(){
+						
+					
+						var paramTrendName=$("#paramTrendNameEmbed").val();
+						var paramUnit=$("#paramUnitEmbed").val();
+						var paramTrendID=$("#trendTabActive").val();
+						
+						$("#editTrendName").html(paramTrendName);
+						//editUnit
+						//check selected option
+						var val1 =paramUnit;
+						$("select#editUnit option").filter(function() {
+						    return $(this).val() == val1; 
+						}).prop('selected', true);
+					
+					 	//$("#editUnit").kendoDropDownList();
+
+						editTrendPointFn(paramTrendID,paramUnit);
+
+						var paramPointId=getDataFromPointEmbed("pointId");
+						paramPointId=paramPointId.split(",");
+						for(var i=0;i<paramPointId.length;i++){
+							//alert(paramPointId[i]);
+							pointCheckbox(paramPointId[i]);
+						}
+						
+						
+						$("select#editUnit").change(function(){
+							editTrendPointFn(paramTrendID,$(this).val());
+							
+							 $("#paramUnitEmbed-"+paramTrendID+"").remove();
+							  var paramUnit="";
+							  paramUnit+="<input type='hidden' id='paramUnitEmbed-"+paramTrendID+"' name='paramUnitEmbed-"+paramTrendID+"' value='"+$(this).val()+"'>";
+							  $("body").append(paramUnit);
+							  
+							
+						});
+						
+						
+						
+						 $("#btnEditPlotGraph").off("click");
+						 $("#btnEditPlotGraph").click(function(){
+							  // plotGraphFn();
+							  // plotGraphFn('Initial','N',$("#paramTrendIDEmbed").val());
+							 var paramTrendID = $("#trendTabActive").val();
+							 var scale = parseInt($("#scaleTimeMenuLeftArea-"+$("#trendTabActive").val()+"").text());
+							  $(".paramPointEmbed-"+paramTrendID+"").remove();
+							  
+							  //embed point start
+							  //var pointChecked = $('input[name=point]:checked');
+							  var pointChecked = $(".trend-"+paramTrendID+":checked");
+							  console.log(pointChecked);
+							  var point="";
+							  $.each(pointChecked,function(index,indexEntry){
+								 //console.log($(indexEntry).val()); 
+								 
+								  if(index==0){
+										point+="D"+$(indexEntry).val();
+									}else{
+										point+=",D"+$(indexEntry).val();
+									}
+							  }); 
+							  alert("2-"+paramTrendID);
+							  alert(point);
+							  
+							  var paramPoint="";
+							  paramPoint+="<input type='hidden' class='paramPointEmbed-"+paramTrendID+"' id='paramPointEmbed-"+paramTrendID+"' name='paramPointEmbed-"+paramTrendID+"' value='"+point+"'>";
+							  paramPoint+="<input type='hidden' class='paramPointEmbed-"+paramTrendID+"' id='paramPointAllEmbed-"+paramTrendID+"' name='paramPointAllEmbed-"+paramTrendID+"' value='"+point+"'>";
+							  $("body").append(paramPoint);
+							  //embed point start
+							  var pointId =getDataFromPointEmbed("pointId");
+							  callDataLayoutPointRight(pointId,paramTrendID);
+							  //alert(scale);
+							  slideScaleFn(paramTrendID,scale); 
+							  
+							  $('#editTrendPointModal').modal('hide');
+							  
+						 });
+						 
+						
+						
+					});
+					//EDIT POINT END
 					
 					 
 		}

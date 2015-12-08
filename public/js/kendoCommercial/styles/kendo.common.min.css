@@ -4580,7 +4580,7 @@ div.k-scheduler-marquee:after {
 
 .k-tooltip {
 	position: absolute;
-	z-index: 20000;
+	z-index: -20000;
 	border-style: solid;
 	border-width: 1px;
 	padding: 4px 5px 4px 6px;

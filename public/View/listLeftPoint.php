@@ -122,10 +122,10 @@
                     <div class='col-md-12 col-sm-12 col-xs-12'>
                          <span class="pull-left valuePoint" id='valuePoint-<?=$_GET['point']?>-<?=$_GET['paramTrendID']?>' style='color:<?=$_GET['colorFlatTheme']?>'>
                             
-                            1427.00
+                            00.00
                         </span>
                          <span class="pull-right planPoint" id='planPoint-<?=$_GET['point']?>-<?=$_GET['paramTrendID']?>' style='color:<?=$_GET['colorFlatTheme']?>'>
-                            1427.00
+                            00.00
                         </span>
                        
                    

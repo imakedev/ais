@@ -30,8 +30,8 @@
  <div class="col-xs-offset-0 col-xs-2 ">
         <div id='listAllUnitArea' class='displaynone'>
             <select class="form-control input-sm" id='unit' name="unit">
-                <option value='All'>All Point</option>
-                <option value='4'>MM04</option>
+                <!-- <option value='All'>All Point</option> -->
+                <option selected value='4'>MM04</option>
                 <option value='5'>MM05</option>
                 <option value='6'>MM06</option>
                 <option value='7'>MM07</option>

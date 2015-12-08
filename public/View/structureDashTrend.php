@@ -199,7 +199,7 @@
                         ">
                           <i class="fa fa-download"></i>
                         </button>
-                         <button type="button" data-toggle="modal" data-target="#editTrendPointModal" id='editTrendPoint' class="btn btn-warning  btn-sm  ">
+                         <button type="button" data-toggle="modal" data-target="#editTrendPointModal" id='editTrendPoint-<?=$_GET['paramTrendID']?>' class="btn btn-warning  btn-sm  editTrendPoint">
                             <i class="fa fa-cogs"></i>
                         </button>
                        

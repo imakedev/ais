@@ -3520,7 +3520,7 @@ body.body-small .footer.fixed {
   cursor: default;
 }
 .nav.nav-tabs li {
-  background: none;
+  background: #fbfbfb;
   border: none;
 }
 .nav-tabs > li > a {
