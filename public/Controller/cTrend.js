@@ -1062,8 +1062,8 @@ function tooltipCustom(){
 										point+=",D"+$(indexEntry).val();
 									}
 							  }); 
-							  alert("2-"+paramTrendID);
-							  alert(point);
+							  //alert("2-"+paramTrendID);
+							 // alert(point);
 							  
 							  var paramPoint="";
 							  paramPoint+="<input type='hidden' class='paramPointEmbed-"+paramTrendID+"' id='paramPointEmbed-"+paramTrendID+"' name='paramPointEmbed-"+paramTrendID+"' value='"+point+"'>";

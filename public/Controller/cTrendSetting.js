@@ -175,7 +175,7 @@ var bindGridPoinList = function(){
 							tableTrendHTML+=" <tr>";
 
 					            tableTrendHTML+="<td>";
-					            tableTrendHTML+="<div class='listCheckbox listPoint'><input type='checkbox' name='point' value='"+indexEntry['H']+"-"+indexEntry['B']+"-"+indexEntry['ZZ']+"'></div>";
+					            tableTrendHTML+="<div class='listCheckbox listPoint'><input type='checkbox' name='point' class='trend-"+trendID+"' id='trend-"+trendID+"' value='"+indexEntry['H']+"-"+indexEntry['B']+"-"+indexEntry['ZZ']+"'></div>";
 					            tableTrendHTML+="</td>";
 					            tableTrendHTML+="<td>"+indexEntry['A']+"</td>";
 					            tableTrendHTML+="<td>"+indexEntry['B']+"</td>";
@@ -294,9 +294,18 @@ var bindGridPoinList = function(){
 						
 						var trendID = this.id.split("-");
 						trendID=trendID[1];
+						
 						var unitID=$("#unit").val();
 						$("#paramTrendIDEmbed").remove();
 						$("body").append("<input type='hidden' id='paramTrendIDEmbed' class='' value='"+trendID+"'>");
+						
+						
+						 $("#paramUnitEmbed").remove();
+						  var paramPoint="";
+						  paramPoint+="<input type='hidden' id='paramUnitEmbed' name='paramUnitEmbed' value='"+unitID+"'>";
+						  $("body").append(paramPoint);
+						  
+						
 						getPointListFn(trendID,unitID);
 						console.log("-----------");
 						//console.log($(this).parent().prev().text());
@@ -317,6 +326,14 @@ var bindGridPoinList = function(){
 				//manage end
 			},
 	};
+	
+	var validationPoint = function(){
+		  var pointChecked = $('input[name=point]:checked');
+		  
+		 
+		  //console.log(pointChecked);
+		  
+	}
 	$(document).ready(function(){
 		   $.ajaxSetup({
 		        headers: {
@@ -349,6 +366,7 @@ var bindGridPoinList = function(){
 			  
 			  
 		   });
+		  
 		   
 		  //binding event plot graph
 		   
@@ -373,7 +391,11 @@ var bindGridPoinList = function(){
 				$("#paramTrendNameEmbed").remove();
 				$("body").append("<input type='hidden' id='paramTrendNameEmbed' class='' value='SH-RH Temperature Control'>");
 				
-				plotGraphFn("Initial","Y");
+				
+				plotGraphFn("Initial","Y",$("#paramTrendIDEmbed").val());
+				
+
+				
 				//set parameter for test data end
 			 }); 
 				
@@ -382,11 +404,14 @@ var bindGridPoinList = function(){
 		 //TEST GRAPH START
 		   
 		   $(".btnPlotGraph").click(function(){
-			   //alert($("#paramTrendIDEmbed").val());
+			   
+			   //check value in check box is not null start
+			   //validationPoint();
+			   //check value in check box is not null end
 			   plotGraphFn('Initial','N',$("#paramTrendIDEmbed").val());
 		   });
 		
 		
-	})
+	});
 	
 	
