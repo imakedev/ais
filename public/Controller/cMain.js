@@ -81,6 +81,17 @@ function convertDateTh(dateTimeHis){
 	 
 	 return  strDate;
 }
+//example 2015-11-17 01:30:00 convert to 17 พฤศจิกายน 2558 เวลา 01:30:00
+function convertDateHisTh(dateTimeHis){
+	
+	var dateTimeHisFormat=setFormatDateTime(dateTimeHis);
+	var d = new Date(dateTimeHisFormat);
+	 //var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+	 
+	 var strDate = (d.getDate() + " " + monthNameTh[(d.getMonth()-1)] + " " +parseInt(d.getFullYear()+543) +"  เวลา "+d.getHours()+ ":" + d.getMinutes() + ":" + d.getSeconds()) ;
+	 
+	 return  strDate;
+}
 function currentTime(){
 	 var d = new Date();
 	 var strDate = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
