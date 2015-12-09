@@ -2,9 +2,9 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes TEST015
+| Application Routes
 |--------------------------------------------------------------------------
-
+|
 | Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
@@ -68,6 +68,10 @@ Route::get('/ais/sootBlower', function(){
 });
 /* End Dashboard Menu */
 
+
+Route::get('/ais/test_nong', function(){
+    return view('ais.test_nong');
+});
 /* Start Design Menu */
 Route::get('/ais/trendColor', function(){
     return view('ais.trend_color');
@@ -91,7 +95,15 @@ Route::get('/ais/formCalculation', function(){
 });
 /* End Design Menu */
 
+Route::resource('/ais/soot', 'SootController@search');
+Route::resource('/ais/sootBlower', 'SootController@search');
+Route::get('/ais/trend_color', function(){
+    return view('ais.trend_color');
+});
 
+Route::get('/ais/design_trend', function(){
+    return view('ais.design_trend');
+});
 
 /*
 Route::get('ais/test', ('SearchController@index'));
@@ -154,6 +166,7 @@ Route::post('/ajax/mmtrend/post','Ajax\TrendDesignAjax@postMmTrend');
 Route::post('/ajax/mmname/post','Ajax\TrendDesignAjax@postMmname');
 Route::delete('/ajax/mmname/delete','Ajax\TrendDesignAjax@deleteMmname');
 Route::delete('/ajax/mmtrend/delete','Ajax\TrendDesignAjax@deleteMmtrend');
+Route::post('/ajax/mmname/search','Ajax\TrendDesignAjax@postMmname');
 
 Route::post('/ajax/mmpoint/search','Ajax\TrendDesignAjax@searchMmpoint');
 /*
@@ -183,7 +196,10 @@ Route::post('/ajax/post', function () {
     
     // Route::get('/trendSetting/edit/','trendSetingController@editMember');
     
-    /*trend seting start*/
+    /*trend seting end00*/
+    
+    
+    
     
     /*trend service start*/
     Route::get('/ais/serviceTrend/getDataHru/{point}/{unit}/{startTime}/{endTime}/','serviceTrendController@getDataHru');
@@ -194,6 +210,17 @@ Route::post('/ajax/post', function () {
     Route::get('/ais/serviceTrend/readDataDayu/','serviceTrendController@readDataDayu');
     
     
+    //process view start 
+
+    Route::get('/ais/processView/createDataPCVSteam47/{paramPCV}/{paramUnit}/{paramEmpId}/{paramFromDate}/{paramToDate}','processViewController@createDataPCVSteam47');
+    Route::get('/ais/processView/readDataPCVSteam47/{paramPCV}/{paramUnit}/{paramEmpId}','processViewController@readDataPCVSteam47');
+    
+    Route::get('/ais/processView/createDataEventPCVSteam47/{paramPCV}/{paramUnit}/{paramEmpId}/{paramFromDate}/{paramToDate}','processViewController@createDataEventPCVSteam47');
+    Route::get('/ais/processView/readDataEventPCVSteam47/{paramPCV}/{paramUnit}/{paramEmpId}','processViewController@readDataEventPCVSteam47');
+    
+    
+    //process view end
+    
     //Test
     
     Route::get('/ais/Test/trendDashboard', function(){
@@ -201,5 +228,5 @@ Route::post('/ajax/post', function () {
     });
         /*trend service end*/
     
-    //Test GIT ADFASDFNONG THIS FLIE OK 001
+    //Test GIT ADFASDFNONG THIS FLIE OK 001 cc
     
