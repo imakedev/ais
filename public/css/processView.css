@@ -23,3 +23,11 @@
 .k-picker-wrap .k-icon {
     margin-top: 5px;
 }
+.noUi-connect {
+    background: #3fb8af none repeat scroll 0 0;
+    box-shadow: 0 0 3px rgba(51, 51, 51, 0.45) inset;
+    transition: background 450ms ease 0s;
+}
+#disPlayDateTimeArea{
+	padding:5px;
+}
