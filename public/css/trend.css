@@ -14,6 +14,7 @@
 	width: 100%;
 	background: white none repeat scroll 0 0;
     border: 1px solid #e7eaec;
+    height: 25px;
 }
 .basicSlideArea{
 	   padding-top: 5px;
@@ -172,7 +173,7 @@ table{
 	 
 }
 .popover-content {
-    padding: 3px;
+    padding: 5px;
 }
 .widthScaleTime {
     padding: 0;
@@ -342,7 +343,7 @@ select.input-sm {
 .scaleTimeMenuRightArea{
 	float: left;
     width: 140px;
-    margin-top: 5px;
+    margin-top: 0px;
 }
 .scaleTimeMenuLeftArea{
 	float: left;
@@ -381,3 +382,26 @@ a[href='#trendSeting']{
 	border:1px solid #fbfbfb;
 }
 
+.noUi-origin{
+	  background: white;
+}
+
+.popover-title {
+
+    padding: 5px;
+}
+.scaleTimeL{
+	
+}
+.scaleTimeR{
+	 padding-left: 3px;
+}
+.input-sm {
+    padding-left: 0;
+}
+.expandFocus{
+	 text-align: center;
+}
+.startTimeForDisplay{
+	 text-align: center;
+}
