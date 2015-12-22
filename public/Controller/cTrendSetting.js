@@ -247,14 +247,15 @@ var bindGridPoinList = function(){
 	}
 	
 	var trendFn={
-			getTrendByGroupFn:function(groupId){
+			getTrendByGroupFn:function(groupId,groupName){
 				//alert(groupId);
 				$.ajax({
-					url:'/ais/trendSetting/getTrendByGroup/'+groupId,
+					url:'/ais/trendSetting/getTrendByGroup/'+groupId+"/"+groupName,
 					dataType:'json',
 					//data:{"groupId":groupId},
 					async:false,
 					success:function(data){
+						
 					var tableTrendHTML="";
 						
 						$.each(data,function(index,indexEntry){
@@ -300,9 +301,9 @@ var bindGridPoinList = function(){
 						$("body").append("<input type='hidden' id='paramTrendIDEmbed' class='' value='"+trendID+"'>");
 						
 						
-						 $("#paramUnitEmbed").remove();
+						 $(".paramUnitEmbed").remove();
 						  var paramPoint="";
-						  paramPoint+="<input type='hidden' id='paramUnitEmbed' name='paramUnitEmbed' value='"+unitID+"'>";
+						  paramPoint+="<input type='hidden' id='paramUnitEmbed-"+trendID+"' class='paramUnitEmbed' name='paramUnitEmbed-"+trendID+"' value='"+unitID+"'>";
 						  $("body").append(paramPoint);
 						  
 						
@@ -312,8 +313,8 @@ var bindGridPoinList = function(){
 						var trendName=$(this).prev().text();
 						$("#trendName").html(trendName);
 						
-						$("#paramTrendNameEmbed").remove();
-						$("body").append("<input type='hidden' id='paramTrendNameEmbed' class='' value='"+trendName+"'>");
+						$(".paramTrendNameEmbed").remove();
+						$("body").append("<input type='hidden' name='paramTrendNameEmbed-"+trendID+"' id='paramTrendNameEmbed-"+trendID+"' class='paramTrendNameEmbed' value='"+trendName+"'>");
 						
 						//show element
 						$("#trendNameArea").show();
@@ -325,6 +326,11 @@ var bindGridPoinList = function(){
 				
 				//manage end
 			},
+			getTrendByTrendNameGroupFn:function(TrendNameGroup){
+				
+				
+			}
+			
 	};
 	
 	var validationPoint = function(){
@@ -346,12 +352,21 @@ var bindGridPoinList = function(){
 		  // },1000);
 		  
 		   
+		  //binding change list group trend start
+			   
+			   $("#listAllTrendGroup").change(function(){
+				   $("#searhTrend").val("");
+			   });
+			  
+		  //binding change list group trend end   
 		   $("#btnSearchByGroup").click(function(){
 			 //  alert($("#listAllTrendGroup").val());
 			   createHtmlGridTrendList();
-			   trendFn.getTrendByGroupFn($("#listAllTrendGroup").val()); 
-
-			   //alert($("#unit").val());
+			   
+			   trendFn.getTrendByGroupFn($("#listAllTrendGroup").val(),$("#searhTrend").val()); 
+			   
+			   //alert($("#searhTrend").val());
+			   
 			   
 		   });
 		 //binding event change select mm
@@ -376,7 +391,7 @@ var bindGridPoinList = function(){
 				//set parameter for test data start
 			   $("#paramUnitEmbed").remove();
 			   	var paramPoint="";
-				paramPoint+="<input type='hidden' id='paramUnitEmbed' name='paramUnitEmbed' value='4'>";
+				paramPoint+="<input type='hidden' id='paramUnitEmbed-88' name='paramUnitEmbed-88' value='4'>";
 				$("body").append(paramPoint);
 				
 				$("#paramTrendIDEmbed").remove();
@@ -385,11 +400,11 @@ var bindGridPoinList = function(){
 				$("#trendName").html("SH-RH Temperature Control(Test Graph)");
 				
 				$("#paramScaleTime").remove();
-				$("body").append("<input type='hidden' name='paramScaleTime' id='paramScaleTime' class='paramDateEmbed' value='Minute'>");
+				$("body").append("<input type='hidden' name='paramScaleTime-88' id='paramScaleTime-88' class='paramDateEmbed' value='Minute'>");
 				
 				
 				$("#paramTrendNameEmbed").remove();
-				$("body").append("<input type='hidden' id='paramTrendNameEmbed' class='' value='SH-RH Temperature Control'>");
+				$("body").append("<input type='hidden' id='paramTrendNameEmbed-88' class='' value='SH-RH Temperature Control'>");
 				
 				
 				plotGraphFn("Initial","Y",$("#paramTrendIDEmbed").val());

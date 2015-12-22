@@ -17,7 +17,8 @@ $resultArray = array();
      */
        $host='localhost';
        $usr='root';
-       $pwd='010535546';
+        $pwd='010535546';
+      // $pwd='p@ssw0rd';
        $db_name="ais";
        
       $sql="SELECT mmtrend_table.B AS mmunit,mmtrend_table.C AS description,mmtrend_table.D AS tagname,mmtrend_table.E,mmtrend_table.F0,mmtrend_table.F1,mmtrend_table.G,mmtrend_table.H

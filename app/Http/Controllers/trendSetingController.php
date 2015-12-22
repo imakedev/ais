@@ -33,12 +33,23 @@ class trendSetingController extends Controller
     public function getTrendGroupBySearch(){
         Log::info("Into getTrendGroupBySearch");
     }
-    public function getTrendByGroup($id){
+    public function getTrendByGroup($id,$trendGroupName=null){
         
+       
+        if($trendGroupName!=null){
+            //echo "trendName";
+        $query="select * from mmname_table
+        WHERE A LIKE '%$trendGroupName%'";
+        $reslutQuery = DB::select($query);
+        Log::info(json_encode($reslutQuery));
+        return json_encode($reslutQuery);
+        }else{
+            //echo "idgroup";
         $query="select * from mmname_table WHERE B='$id'";
         $trendByGroup = DB::select($query);
         Log::info(json_encode($trendByGroup));
         return json_encode($trendByGroup);
+        }
         
     }
    
@@ -85,4 +96,16 @@ class trendSetingController extends Controller
         $mmtrend_group = DB::select($query);
         Log::info(json_encode($mmtrend_group));
     }
+    public function getTrendByTrendNameGroup($trendNameGroup){
+        //echo $trendName;
+        
+        $query="select * from mmname_table
+        WHERE A LIKE '%$trendNameGroup%'";
+        $reslutQuery = DB::select($query);
+        Log::info(json_encode($reslutQuery));
+        return json_encode($reslutQuery);
+        
+        
+    }
+    
 }

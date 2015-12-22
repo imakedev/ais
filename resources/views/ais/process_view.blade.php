@@ -52,7 +52,13 @@
                                                    
                                     	            <div class="col-xs-2 ">
                                                     <!-- slide start -->
-                                                     <label class="control-label" for="product_name">Focus / Expand</label>
+                                                    
+                                                     <label class="control-label" for="slideFocusExpress">Focus / Expand</label>
+                                                     
+                                                      <div id="slideFocusExpressArea">
+                                                        <div id="slideFocusExpress"></div>
+                                                      </div>
+                                                     <!-- 
                                                     <div class="noUi-target noUi-ltr noUi-horizontal noUi-background slideTop" id="basic_slider">
                                                         
                                                         <div class="noUi-base">
@@ -61,28 +67,37 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                     -->
                                                     <!-- slide end -->
                                                     </div>
                                     	             
                                     	            <div class="col-xs-10">
                                     	            
                                     	             <div class="row">
-                                    	               <div class="col-xs-2">
+                                    	               <div class="col-xs-3">
                                     	                 
                                                                
                                                             <div class="form-group">
                                                                 <label class="control-label" for="paramPcv">PCV</label>
                                                                 <select class="form-control input-sm bgBlack" id='paramPcv' name="paramPcv">
-                                                                    <option value='fgd'>FGD</option>
+                                                                    
+        
+                                                                    <option value='plantow47' selected='selected'>Plant Overview </option>
+                                                                    <option value='steam47' >STEAM </option>
+                                                                    <option value='fgd67'>FGD </option>
+                                                                    <option value='turbine47'>Turbine </option>
+                                                                    <option value='steam813' >STEAM(813)</option>
+                                                                    
+                                                                    <!-- 
                                                                     <option value='plantow'>PLANTOVV</option>
-                                                                    <option value='steam'>STEAM</option>
                                                                     <option value='turbine'>TURBINE</option>
+                                                                    -->
                                                                     
-                                                                    
-                                                                    <option value='steam47' selected='selected'>STEAM</option>
+                                                                   <!-- 
+                                                                    <option value='steam'>STEAM</option>
                                                                     <option value='pulv'>PULV</option>
                                                                     <option value='fring'>FRING</option>
-                                                                    
+                                                                   -->
                                                                     
                                                                     
                                                                 </select> 
@@ -94,19 +109,19 @@
                                                                
                                                             <div class="form-group">
                                                                 <label class="control-label" for="product_name">Unit</label>
-                                                                <select class="form-control input-sm bgBlack" name="unit" id='unit'>
-                                                                    <option value='MM03'>MM03</option>
-                                                                    <option value='MM04'>MM04</option>
-                                                                    <option value='MM05'>MM05</option>
-                                                                    <option value='MM06'>MM06</option>
-                                                                    <option value='MM07'>MM07</option>
+                                                                <select class="form-control input-sm bgBlack" name="paramUnit" id='paramUnit'>
+                                                                 
+                                                                    <option value='4'>MM04</option>
+                                                                    <option value='5'>MM05</option>
+                                                                    <option value='6'>MM06</option>
+                                                                    <option value='7'>MM07</option>
                                                                    
                                                                 </select> 
                                                             </div>
                                                             
                                     	               </div>
                                     	               
-                                    	               <div class="col-xs-3">
+                                    	               <div class="col-xs-2">
                                     	                 
                                     	                     <div class="form-group">
                                                                 <label class="control-label" for="product_name">Date</label>
@@ -151,13 +166,13 @@
                                                                 </div>
                                                            
                                     	               </div>
-                                    	                <div class="col-xs-1"   >
+                                    	               <div class="col-xs-1"   >
                                     	                 
                                                                  <div class="form-group">
                                                                     <label class="control-label" for="product_name">Span T</label>
                                                                    
                                                                     <div class="input-group ">
-                                                                        <input type='text' class='input-sm form-control bgBlack' name='paramSpanTime' id='paramSpanTime' value='0.00'>
+                                                                        <input type='text' class='input-sm form-control bgBlack' name='paramSpanTime' id='paramSpanTime' value='4'>
                                                                     </div>
                                                                 </div>
                                                            
@@ -210,6 +225,11 @@
                                   <!-- display process view end -->              
                            </div>
                         </div>
+                        
+                        <div id='paramEmbedArea'>
+                            
+                        </div>
+                        <input type='hidden' id='eventAction' name='eventAction' value='showEvent'>
                         
                         
                         <br style='clear: both'>

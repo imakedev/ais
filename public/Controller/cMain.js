@@ -1,4 +1,7 @@
+//Variable Global
+var dataEventForTrend="";
 /* loading start */
+
 function startLoading(){
 	 HoldOn.open('sk-rect');
 	 }
@@ -8,10 +11,10 @@ function stopLoading(){
 
 
 $(document).ajaxStart(function() {
-	startLoading();
+	//startLoading();
 });
 $(document).ajaxStop(function() {
-	stopLoading();
+	//stopLoading();
 });
 /* loading end */
 //theme
@@ -56,7 +59,30 @@ function currentDateTime(){
 	 var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate()+" "+d.getHours()+ ":" + d.getMinutes() + ":" + d.getSeconds();
 	 return  strDate;
 }
+function addZeroToNumber(number){
+	var numberHasZero="";
+	switch(parseInt(number)){
+		case 1: numberHasZero="01"; break;
+		case 2: numberHasZero="02"; break;
+		case 3: numberHasZero="03"; break;
+		case 4: numberHasZero="04"; break;
+		case 5: numberHasZero="05"; break;
+		case 6: numberHasZero="06"; break;
+		case 7: numberHasZero="07"; break;
+		case 8: numberHasZero="08"; break;
+		case 9: numberHasZero="09"; break;
+		case 0: numberHasZero="00"; break;
+		default: numberHasZero=number;
+	}
+	return numberHasZero;
+}
+function addZeroTOMinute(paramHis){
+	paramHis = paramHis.split(":");
+	paramHis=addZeroToNumber(paramHis[0])+":"+addZeroToNumber(paramHis[1])+":"+addZeroToNumber(paramHis[2])
+	return paramHis;
+}
 
+//alert(addZeroToNumber(1));
 function currentDate(){
 	 var d = new Date();
 	 var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
@@ -81,6 +107,17 @@ function convertDateTh(dateTimeHis){
 	 
 	 return  strDate;
 }
+//example 2015-11-17 00:00:00 convert to  พฤศจิกายน 2558
+function convertDatetoMonthYearTh(dateTimeHis){
+	
+	var dateTimeHisFormat=setFormatDateTime(dateTimeHis);
+	var d = new Date(dateTimeHisFormat);
+	 //var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+	 
+	 var strDate = ( monthNameTh[(d.getMonth()-1)] + " " +parseInt(d.getFullYear()+543)) ;
+	 
+	 return  strDate;
+}
 //example 2015-11-17 01:30:00 convert to 17 พฤศจิกายน 2558 เวลา 01:30:00
 function convertDateHisTh(dateTimeHis){
 	
@@ -88,7 +125,7 @@ function convertDateHisTh(dateTimeHis){
 	var d = new Date(dateTimeHisFormat);
 	 //var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
 	 
-	 var strDate = (d.getDate() + " " + monthNameTh[(d.getMonth()-1)] + " " +parseInt(d.getFullYear()+543) +"  เวลา "+d.getHours()+ ":" + d.getMinutes() + ":" + d.getSeconds()) ;
+	 var strDate = (addZeroToNumber(d.getDate()) + " " + addZeroToNumber(monthNameTh[(d.getMonth()-1)]) + " " +parseInt(d.getFullYear()+543) +"  เวลา "+addZeroToNumber(d.getHours())+ ":" + addZeroToNumber(d.getMinutes()) + ":" + addZeroToNumber(d.getSeconds())) ;
 	 
 	 return  strDate;
 }
@@ -355,17 +392,18 @@ function datetimeCurrentHFn(datetime){
 
 }
 //slider start
+var i=0;
 
 function slideScaleFn(paramTrendID,startStep){
 	
-	//alert("slideScaleFn");
+	//alert(startStep);
 	
 	$("#scaleTimeMenuRightArea-"+paramTrendID+"").html("<div id=\"keypress-"+paramTrendID+"\" ></div>");
 	var slider = document.getElementById("keypress-"+paramTrendID+"");
 
 	noUiSlider.create(slider, {
 		start: startStep,
-		step: 4,
+		step: 2,
 		range: {
 			'min': 0,
 			//'20%': [ 300, 100 ],
@@ -375,39 +413,83 @@ function slideScaleFn(paramTrendID,startStep){
 	});
 	
 	slider.noUiSlider.on('update', function( values, handle ) {
-		console.log(values[handle]);
+		//console.log(values[handle]);
 		$("#expandFocus-"+paramTrendID+"").val(values[handle]+" Hour");
 		$("#scaleTimeMenuLeftArea-"+paramTrendID+"").html(values[handle]+" Hour");
 		
-			setTimeout(function(){
-				readJsonExpandFocusFn(values[handle],paramTrendID);
-			},1000);
-		
+			if(i!=0){
+				//alert("ok");
+				//readJsonExpandFocusFn(values[handle],paramTrendID);
+			}else{
+				//alert("not ok");
+			}
+				
+			i++;	
 			
 	});
+	
+	
 }
 	//slider end
 
 //==================end====================================
-//function display expand focus start
-	function setScaleDateTimeFn(startDate,endDate,paramTrendID){
-		//default value scaleDateTimeArea start
-		//intervalDelNoneHis
-		var htmlScaleDateTime="";
-	  	if((startDate==undefined) || (endDate==undefined)){
-		  htmlScaleDateTime="ข้อมูลวันที่ "+intervalDelNoneHisThFn(currentDateTime(),'day',1)+" - "+currentDateTh()+" <i class='scaleDateTimeArea'></i>";
-	  	$("#scaleDateTimeArea-"+paramTrendID).html(htmlScaleDateTime);
-	   	//default value scaleDateTimeArea end
-		}else{
-			
-			 htmlScaleDateTime="ข้อมูลวันที่ "+convertDateTh(startDate)+" - "+convertDateTh(endDate)+" <i class='scaleDateTimeArea'></i>";
-			 $("#scaleDateTimeArea-"+paramTrendID).html(htmlScaleDateTime);
-			
-		}
-	}
 
 	
-//function display expand focus end
 	
 	
+// Test Data Start here...
+function testReadDataSecondu(){
+	 $.ajax({
+			url:"/ais/serviceTrend/readDataSecondu",
+			type:"get",
+			async:false,
+			dataType:"json",
+			success:function(data){
+				console.log(data);
+				//Format [{"EvTime":"2014-05-17 00:00:00","D32":"149.74"},{"EvTime":"2014-05-17 00:01:00","D32":"149.61"}]
+				var dataJson="";
+				dataJson+="[";
+				var i=0;
+				$.each(data,function(index,indexEntry){
+					
+					var dateTime="2014-05-01 00:00:";
+					var sec="";
+					sec=index.split("-");
+					sec=sec[1];
+					dateTime=dateTime+""+addZeroToNumber(sec);
+					/*
+					console.log(dateTime);
+					
+					$.each(indexEntry[0],function(index2,indexEntry2){
+						console.log(index2+"-"+indexEntry2);
+					});
+					console.log("--------");
+					*/
+					
+					if(i==0){
+						dataJson+="{\"EvTime\":\""+dateTime+"\"";
+						$.each(indexEntry[0],function(index2,indexEntry2){
+							dataJson+=",\""+index2+"\":\""+indexEntry2+"\"";
+						});
+					}else{
+						dataJson+=",{\"EvTime\":\""+dateTime+"\"";
+						$.each(indexEntry[0],function(index2,indexEntry2){
+							dataJson+=",\""+index2+"\":\""+indexEntry2+"\"";
+						});
+					}
+					
+					
+					dataJson+="}";
+					i++;
+					
+					
+					
+				});
+				dataJson+="]";
+				console.log(dataJson);
+			}
+	 });
+}
+//testReadDataSecondu();
+//Test Data End here..
 	

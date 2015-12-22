@@ -5,6 +5,21 @@
 
 <!-- test start -->
 <!-- trend contend area start -->
+<link href="/css/structureDashTrend.css" rel="stylesheet">
+<div id='tooltipData' class='displaynone'>
+    <!-- 
+    <ul id='eventArea-point-trend'>Trend01
+        <li id='event-point-trend'>event</li>
+        <li id='action-point-trend'>action</li>
+        <li id='vpser-point-trend'>vpser</li>
+    </ul>
+    <ul id='eventArea-point-trend'>Trend02
+        <li id='event-point-trend'>event</li>
+        <li id='action-point-trend'>action</li>
+        <li id='vpser-point-trend'>vpser</li>
+    </ul>
+     -->
+</div>
 <div id='trendContentArea' class=''>
 
             
@@ -12,8 +27,33 @@
                 <div class='col-md-2 '>
                    <!--<div class='col-md-2 basicSlideArea'>
                     slide start -->
-                    <div class='scaleTimeMenuRightArea' id='scaleTimeMenuRightArea-<?=$_GET['paramTrendID']?>'>
+                        <div class='scaleTimeMenuRightArea' id='scaleTimeMenuRightArea-<?=$_GET['paramTrendID']?>'>
                         <!-- <div id="keypress" ></div> -->
+                        <!-- start -->
+                        <div class='setTimeCustomArea timeFocusExpand' >
+                        <div class='doubleLeftArea'>
+                            
+                             <a class="btn btn-white btn-bitbucket btn-sm  " id='focus-<?=$_GET['paramTrendID']?>'>
+                                <i class="fa fa-minus"></i>
+                             </a>
+                        </div>
+                      
+                        
+                            <div class='textExpandFocus'>
+                                <input type="text" class="form-control input-sm expandFocus " id='expandFocus-<?=$_GET['paramTrendID']?>' placeholder="4 Hour">
+                            </div>
+                        
+                        
+                        
+                         <div class='doublerightArea'>
+                             <a class="btn btn-white btn-bitbucket btn-sm  " id='expand-<?=$_GET['paramTrendID']?>'>
+                                <i class="fa fa-plus"></i>
+                            </a>
+                            
+                         </div>
+                        
+                    </div>
+                        <!-- end -->
                     </div>
                     <div class='scaleTimeMenuLeftArea displaynone' id='scaleTimeMenuLeftArea-<?=$_GET['paramTrendID']?>'>
                         4 Hour
@@ -35,7 +75,7 @@
                             </div>
                              -->
                 </div>
-                <div class='col-md-4'>
+                <div class='col-md-5'>
                
                 <!-- date display -->
                 <!-- 
@@ -47,7 +87,7 @@
                
                 
                 <div class="btn btn-sm titleDate btnScaleTimeArea" id='btnScaleTimeArea-<?=$_GET['paramTrendID']?>' data-container="body" 
-                        data-toggle="popover" data-placement="bottom"   title="Scale Times" data-html="true"
+                        data-toggle="popover" data-placement="bottom"   title="<i class='fa fa-calendar'></i> Scale Times" data-html="true"
                         data-content="
                         
                  
@@ -61,7 +101,7 @@
                         
                            <div class='form-group'>
                                 <label class='col-lg-3 control-label textAlign'>ช่วงเวลา</label>
-                                <div class='col-lg-9 '>
+                                <div class='col-lg-9 scaleTimeR'>
                                     <select name='scaleTime-<?=$_GET['paramTrendID']?>' id='scaleTime-<?=$_GET['paramTrendID']?>' class='form-control input-sm '>
                                         
                                         <option value='Month'>Month</option>
@@ -89,14 +129,14 @@
                         
                            <div class='form-group' >
                                 <label class='col-lg-3 control-label textAlign'>วันที่</label>
-                                <div class='col-lg-9 '>
-                                  
-                                       <input type='text' id='dateFrom-<?=$_GET['paramTrendID']?>' value='07/01/2014' class='form-control input-sm'>
+                                <div class='col-lg-9 scaleTimeR' id='dateFromArea-<?=$_GET['paramTrendID']?>'>
+                                        <!-- 07/01/2014 -->
+                                       <input type='text' id='dateFrom-<?=$_GET['paramTrendID']?>' value='' class='form-control input-sm' style='width: 100%'>
                                     
                                 </div>
                            </div>
                      </div>
-                     <div class='row rowTopBottomMargin'>
+                     <div class='row rowTopBottomMargin forSecondFormHide'>
                             <!-- 
                            <div class='form-group'  id='dateToArea'>
                                 <label class='col-lg-3 control-label textAlign'>ถึงวันที่</label>
@@ -109,9 +149,36 @@
                             -->
                             <div class='form-group' >
                                 <label class='col-lg-3 control-label textAlign'>ถึงวันที่</label>
-                                <div class='col-lg-9 '>
+                                <div class='col-lg-9 scaleTimeR' id='dateToArea-<?=$_GET['paramTrendID']?>'>
+                                   <!-- 07/01/2014 -->
+                                       <input type='text' id='dateTo-<?=$_GET['paramTrendID']?>' value='' class='form-control input-sm' style='width: 100%'>
+                                    
+                                </div>
+                           </div>
+                        
+                     </div>
+                     
+                     
+                       <div class='row rowTopBottomMargin forSecondFormShow displaynone'>
+                           
+                            <div class='form-group' >
+                                <label class='col-lg-3 control-label textAlign'>ชั่วโมง</label>
+                                <div class='col-lg-9 scaleTimeR'>
                                    
-                                       <input type='text' id='dateTo-<?=$_GET['paramTrendID']?>' value='07/01/2014' class='form-control input-sm'>
+                                       <input type='text' id='hour-<?=$_GET['paramTrendID']?>' value='00' class='form-control input-sm '>
+                                    
+                                </div>
+                           </div>
+                        
+                     </div>
+                     
+                     <div class='row rowTopBottomMargin forSecondFormShow displaynone'>
+                           
+                            <div class='form-group' >
+                                <label class='col-lg-3 control-label textAlign'>นาที</label>
+                                <div class='col-lg-9 scaleTimeR'>
+                                   
+                                       <input type='text' id='minute-<?=$_GET['paramTrendID']?>' value='10' class='form-control input-sm '>
                                     
                                 </div>
                            </div>
@@ -143,7 +210,7 @@
                 
                 <!-- date display -->
                 </div>
-                 <div class='col-md-6'>
+                 <div class='col-md-5'>
                     <!-- date display -->
                     <div class="downloadSettingArea">
                         <button type="button" class="btn btn-primary btn-sm  " data-container="body" 
@@ -224,7 +291,7 @@
                         
                         <!-- input form start -->
                             <div class='textSetTime'>
-                                <input type="text" class="form-control input-sm  " id='startTimeForDisplay-<?=$_GET['paramTrendID']?>' placeholder="00:00">
+                                <input type="text" class="form-control input-sm  startTimeForDisplay" id='startTimeForDisplay-<?=$_GET['paramTrendID']?>' placeholder="00:00">
                             </div>
                         <!-- input form end -->
                         
@@ -242,31 +309,31 @@
                     </div>
                     
                     
-                    
+                    <!-- 
                     <div class='setTimeCustomArea timeFocusExpand' >
                         <div class='doubleLeftArea'>
                             
                              <a class="btn btn-white btn-bitbucket btn-sm  " id='focus-<?=$_GET['paramTrendID']?>'>
-                                <i class="fa fa-angle-left"></i>
+                                <i class="fa fa-minus"></i>
                              </a>
                         </div>
                       
-                        <!-- input form start -->
+                         /*input form start */
                             <div class='textExpandFocus'>
                                 <input type="text" class="form-control input-sm  " id='expandFocus-<?=$_GET['paramTrendID']?>' placeholder="4 Hour">
                             </div>
-                        <!-- input form end -->
+                        /*input form end */
                         
                         
                          <div class='doublerightArea'>
                              <a class="btn btn-white btn-bitbucket btn-sm  " id='expand-<?=$_GET['paramTrendID']?>'>
-                                <i class="fa fa-angle-right"></i>
+                                <i class="fa fa-plus"></i>
                             </a>
                             
                          </div>
                         
                     </div>
-                    
+                     -->
                     <!-- date display -->
                 </div>
             </div>
@@ -297,15 +364,27 @@
                                 -->
                             </div>
                         
-                             <div id='dateInDataDisplayAreaHour' class='dateInDataDisplayArea  displaynone'>   
+                             <div id='dateInDataDisplayAreaHour-<?=$_GET['paramTrendID']?>' class='dateInDataDisplayArea  displaynone'>   
                                
-                                    <div id='dateTimeInDataDisplayHour'></div>
+                                    <div id='dateTimeInDataDisplayHour-<?=$_GET['paramTrendID']?>'></div>
                             </div>
                             
-                             <div id='dateInDataDisplayAreaHourDay' class='dateInDataDisplayArea  displaynone'>   
+                             <div id='dateInDataDisplayAreaHourDay-<?=$_GET['paramTrendID']?>' class='dateInDataDisplayArea  displaynone'>   
                                 
-                                    <div id='dateTimeInDataDisplayDay'></div>
+                                    <div id='dateTimeInDataDisplayDay-<?=$_GET['paramTrendID']?>'></div>
                             </div>
+                            
+                             <div id='dateInDataDisplayAreaMonth-<?=$_GET['paramTrendID']?>' class='dateInDataDisplayArea  displaynone'>   
+                                
+                                    <div id='dateTimeInDataDisplayMonth-<?=$_GET['paramTrendID']?>'></div>
+                            </div>
+                            
+                            <div id='dateInDataDisplayAreaSecond-<?=$_GET['paramTrendID']?>' class='dateInDataDisplayArea  displaynone'>   
+                                
+                                    <div id='dateTimeInDataDisplaySecond-<?=$_GET['paramTrendID']?>'></div>
+                            </div>
+                            
+                            
                         
                       </div>  
                         <!-- list point area -->

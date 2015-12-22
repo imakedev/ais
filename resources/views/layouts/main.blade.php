@@ -61,9 +61,10 @@
     <script src="/js/plugins/peity/jquery.peity.min.js"></script>
     <script src="/js/demo/peity-demo.js"></script>
 
-    <!-- Custom and plugin javascript -->
+    <!-- Custom and plugin javascript-->
     <script src="/js/inspinia.js"></script>
     <script src="/js/plugins/pace/pace.min.js"></script>
+    
 
     <!-- jQuery UI -->
     <script src="/js/plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -85,8 +86,8 @@
 
     <!-- kendo ui resource end -->
     <script src="/Controller/cMain.js"></script>
-    <!-- <script src="//kendo.cdn.telerik.com/2015.3.930/js/kendo.all.min.js"></script>--> 
-   <script src="/js/kendoCommercial/js/kendo.all.min.js"></script> 
+   <script src="//kendo.cdn.telerik.com/2015.3.930/js/kendo.all.min.js"></script>
+     <!--<script src="/js/kendoCommercial/js/kendo.all.min.js"></script> --> 
 
 
     <script>
@@ -98,6 +99,7 @@
 
 <body>
 
+ <div id='tooltip'class='tooltipClass'></div> 
     <div id="wrapper">
 
         <nav class="navbar-default navbar-static-side" role="navigation">

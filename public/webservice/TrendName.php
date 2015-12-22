@@ -18,6 +18,7 @@ $resultArray = array();
      $host='localhost';
      $usr='root';
      $pwd='010535546';
+      // $pwd='p@ssw0rd';
      $db_name="ais";
    }
   $db=new Database($host,$usr,$pwd,$db_name);//connect database

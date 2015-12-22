@@ -33,9 +33,10 @@ $resultArray = array();
      $pwd='larrabee';
      $db_name="avg8-13";
      */
-       $host='localhost';
+       $host='10.249.99.107';
        $usr='root';
-       $pwd='010535546';
+      // $pwd='010535546';
+       $pwd='p@ssw0rd';
        $db_name="ais";
        
    }

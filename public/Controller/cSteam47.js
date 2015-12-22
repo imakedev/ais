@@ -36,48 +36,51 @@ var logicPointSteam47 = {
 		},
 		point1(paramDataPoint){
 			
-			$("#point1").html("<font color='red'>1,</font>"+parseFloat(paramDataPoint).toFixed(2));	
+			$("#point1").html("<font class='displaynone' color='red'>1,</font>"+parseFloat(paramDataPoint).toFixed(2));	
 			
 		
 		},point2(paramDataPoint){
 		
-			$("#point2").html("<font color='red'>2,</font>"+parseFloat(paramDataPoint).toFixed(2));	
+			$("#point2").html("<font class='displaynone' color='red'>2,</font>"+parseFloat(paramDataPoint).toFixed(2));	
 			
 		},point3(paramDataPoint){
 			
-			$("#point3").html("<font color='red'>3,</font>"+parseFloat(paramDataPoint).toFixed(2));	
+			$("#point3").html("<font class='displaynone' color='red'>3,</font>"+parseFloat(paramDataPoint).toFixed(2));	
 			
 		},point4(paramDataPoint){
 			
-			$("#point4").html("<font color='red'>4,</font>"+parseFloat(paramDataPoint).toFixed(2));	
+			$("#point4").html("<font class='displaynone' color='red'>4,</font>"+parseFloat(paramDataPoint).toFixed(2));	
 			
 		},point5(paramDataPoint){
 			
-			$("#point5").html("<font color='red'>5,</font>"+parseFloat(paramDataPoint).toFixed(2));	
+			$("#point5").html("<font class='displaynone' color='red'>5,</font>"+parseFloat(paramDataPoint).toFixed(2));	
 			
 		},point6(paramDataPoint){
 			
-			$("#point6").html("<font color='red'>6,</font>"+parseFloat(paramDataPoint).toFixed(2));	
+			$("#point6").html("<font class='displaynone' color='red'>6,</font>"+parseFloat(paramDataPoint).toFixed(2));	
 			
 		},point7(paramDataPoint){
 			
-			$("#point7").html("<font color='red'>7,</font>"+parseFloat(paramDataPoint).toFixed(2));	
+			$("#point7").html("<font class='displaynone' color='red'>7,</font>"+parseFloat(paramDataPoint).toFixed(2));	
 			
 		},point8(paramDataPoint){
 			
-			$("#point8").html("<font color='red'>8,</font>"+parseFloat(paramDataPoint).toFixed(2));	
+			$("#point8").html("<font class='displaynone' color='red'>8,</font>"+parseFloat(paramDataPoint).toFixed(2));	
 			
 			
 		},point9(paramDataPoint){
 			
-			$("#point9").html("<font color='red'>9,</font>"+parseFloat(paramDataPoint).toFixed(2));	
+			$("#point9").html("<font class='displaynone' color='red'>9,</font>"+parseFloat(paramDataPoint).toFixed(2));	
 			
 		},point10(paramDataPoint){
 			
-			$("#point10").html("<font color='red'>10,</font>"+parseFloat(paramDataPoint).toFixed(2));	
+			$("#point10").html("<font class='displaynone' color='red'>10,</font>"+parseFloat(paramDataPoint).toFixed(2));	
 			
 		}
 }
+
+
+
 
 function setDataOnDashboardStream47(data){
 	
@@ -103,7 +106,7 @@ var stream47={
 			$("#disPlayDateTimeArea").html("<center><b>ข้อมูลวันที่  "+convertDateHisTh(paramDate+" 00:00:00")+"</b></center>");
 
 		},
-		readDataEventPCVSteam47Fn(paramPcv,paramUnit,paramEmpId){
+		readDataEventPCVFn(paramPcv,paramUnit,paramEmpId){
 			 var jsonFilter = new Array();
 			$.ajax({
 				url:"/ais/processView/readDataEventPCVSteam47/"+paramPcv+"/"+paramUnit+"/"+paramEmpId+"",
@@ -122,7 +125,10 @@ var stream47={
 					alert(paramToDate2);
 					*/
 					$.each(data,function(index,indexEntry){
-						
+						//Test start
+						paramFromDate2='2014-05-01 00:00:00';
+						paramToDate2='2014-05-01 02:00:00'
+						//Test End
 						if((toTimestamp(indexEntry['sys_date'])>=toTimestamp(paramFromDate2)) && (toTimestamp(indexEntry['sys_date'])<=toTimestamp(paramToDate2))) {
 							jsonFilter.push(indexEntry);
 							//console.log(indexEntry);
@@ -133,12 +139,13 @@ var stream47={
 					console.log("jsonFilter");
 					console.log(jsonFilter);
 					
-					//createHtmlForGridEventFn(data);
+					createHtmlForGridEventFn(jsonFilter);
+					bindingGridlistEventFn();
 					
 				}
 			});
 		},
-		readDataPCVSteam47Fn(paramPcv,paramUnit,paramEmpId,paramIndexDate){
+		readDataPCVFn(paramPcv,paramUnit,paramEmpId,paramIndexDate){
 			//alert(paramIndexDate);
 			var jsonFilter = new Array();
 			/*
@@ -155,12 +162,18 @@ var stream47={
 				async:false,
 				success:function(data){
 					
+				if(data==''){
+					alert('data is empty');
+					return false;
+				}
+					
 				if((paramIndexDate!="") && (paramIndexDate!=undefined)){
 					//console.log("--1");
 					//console.log(parseInt(paramIndexDate));
 					var paramMax=data.length;
 					var paramStart=data.length;
 					//console.log("--2"+data.length);
+					
 					$.each(data,function(index,indexEntry){
 							//console.log(index+"="+(parseInt(paramIndexDate)-1));
 						if(index==(parseInt(paramIndexDate)-1)){
@@ -197,7 +210,7 @@ var stream47={
 			});
 
 		},
-		createDataPCVSteam47Fn(paramPcv,paramUnit,paramEmpId,paramFromDate,paramToDate){
+		createDataPCVFn(paramPcv,paramUnit,paramEmpId,paramFromDate,paramToDate){
 			/*
 			alert(paramPcv);
 			alert(paramUnit);
@@ -218,7 +231,7 @@ var stream47={
 					
 					if(data=='createJsonSuccess'){
 						
-						stream47.readDataPCVSteam47Fn(paramPcv,paramUnit,paramEmpId,'');
+						stream47.readDataPCVFn(paramPcv,paramUnit,paramEmpId,'');
 						
 					}
 					console.log(data);
@@ -229,7 +242,7 @@ var stream47={
 			
 			
 		},
-		createDataEventPCVSteam47Fn(paramPcv,paramUnit,paramEmpId,paramFromDate,paramToDate){
+		createDataEventPCVFn(paramPcv,paramUnit,paramEmpId,paramFromDate,paramToDate){
 			
 			
 			//{paramPCV}/{paramUnit}/{parmEmpId}/{paramFromDate}/{paramToDate}
@@ -245,7 +258,7 @@ var stream47={
 					if(data=='createJsonSuccess'){
 						
 						//stream47.readDataPCVSteam47Fn(paramPcv,paramUnit,paramEmpId,'');
-						 stream47.readDataEventPCVSteam47Fn(paramPcv,paramUnit,paramEmpId);
+						 stream47.readDataEventPCVFn(paramPcv,paramUnit,paramEmpId);
 						
 					}
 					console.log(data);
@@ -264,10 +277,10 @@ var stream47={
 var mainSteam47Fn = function(paramPcv,paramUnit,parmEmpId,paramFromDate,paramToDate){
 
 //test read processViewJson-steam47-4-3.txt
-stream47.createDataPCVSteam47Fn(paramPcv,paramUnit,parmEmpId,paramFromDate,paramToDate);	
+stream47.createDataPCVFn(paramPcv,paramUnit,parmEmpId,paramFromDate,paramToDate);	
 
 
-stream47.createDataEventPCVSteam47Fn(paramPcv,paramUnit,parmEmpId,paramFromDate,paramToDate);
+stream47.createDataEventPCVFn(paramPcv,paramUnit,parmEmpId,paramFromDate,paramToDate);
 
 
 stream47.disPlayDateTimeFn(paramToDate);

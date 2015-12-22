@@ -10,7 +10,7 @@
     </div>
    
      <div class="col-xs-2">
-      <input type="text" placeholder="ค้นหาด่วน" class="input-sm form-control pull-right"> 
+      <input type="text" id='searhTrend' name='searhTrend' placeholder="ค้นหาด่วน" class="input-sm form-control pull-right"> 
      </div>
     <div class="col-xs-2 ">
           

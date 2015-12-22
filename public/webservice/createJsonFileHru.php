@@ -35,7 +35,8 @@ $resultArray = array();
      */
        $host='localhost';
        $usr='root';
-       $pwd='010535546';
+        $pwd='010535546';
+      // $pwd='p@ssw0rd';
        $db_name="ais";
        
    }

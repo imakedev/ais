@@ -189,11 +189,11 @@ Route::post('/ajax/post', function () {
     /*trend seting start*/
     // Route::post('/trendSetting/post','trendSetingController@postMember');
     Route::get('/ais/trendSetting/getAllTrendGroup/','trendSetingController@getAllTrendGroup');
-    Route::get('/ais/trendSetting/getTrendByGroup/{id}','trendSetingController@getTrendByGroup');
+    Route::get('/ais/trendSetting/getTrendByGroup/{id}/{trendGroupName?}','trendSetingController@getTrendByGroup');
     Route::get('/ais/trendSetting/getPointByTrend/{trendID}/{unitID}','trendSetingController@getPointByTrend');
     Route::get('/ais/trendSetting/getPointByPointID/{pontID}','trendSetingController@getPointByPointID');
     Route::post('/ais/trendSetting/getDataByQuery/{query}','trendSetingController@getDataByQuery');
-    
+
     // Route::get('/trendSetting/edit/','trendSetingController@editMember');
     
     /*trend seting end00*/
@@ -210,14 +210,34 @@ Route::post('/ajax/post', function () {
     Route::get('/ais/serviceTrend/readDataDayu/','serviceTrendController@readDataDayu');
     
     
+    Route::get('/ais/serviceTrend/getDataMonthu/{point}/{unit}/{startTime}/{endTime}/','serviceTrendController@getDataMonthu');
+    Route::get('/ais/serviceTrend/readDataMonthu/','serviceTrendController@readDataMonthu');
+    
+    
+    Route::get('/ais/serviceTrend/readDataSecondu/{folderName}/{fileName}/{point}/','serviceTrendController@readDataSecondu');
+    Route::get('/ais/serviceTrend/readEventDataTrend/{point}/{unit}/{startTime}/{endTime}/','serviceTrendController@readEventDataTrend');
+    Route::get('/ais/serviceTrend/readEventDataTrendByEvent/{point}/{unit}/{startTime}/{endTime}/{event}/','serviceTrendController@readEventDataTrendByEvent');
+    
+    
+    
+    /*trend service end*/
+    
     //process view start 
-
+    //Steam47 START
     Route::get('/ais/processView/createDataPCVSteam47/{paramPCV}/{paramUnit}/{paramEmpId}/{paramFromDate}/{paramToDate}','processViewController@createDataPCVSteam47');
     Route::get('/ais/processView/readDataPCVSteam47/{paramPCV}/{paramUnit}/{paramEmpId}','processViewController@readDataPCVSteam47');
     
     Route::get('/ais/processView/createDataEventPCVSteam47/{paramPCV}/{paramUnit}/{paramEmpId}/{paramFromDate}/{paramToDate}','processViewController@createDataEventPCVSteam47');
     Route::get('/ais/processView/readDataEventPCVSteam47/{paramPCV}/{paramUnit}/{paramEmpId}','processViewController@readDataEventPCVSteam47');
+    //Steam47 END
     
+    //Plantow47 START
+    Route::get('/ais/processView/createDataPCVPlantow47/{paramPCV}/{paramUnit}/{paramEmpId}/{paramFromDate}/{paramToDate}','processViewController@createDataPCVPlantow47');
+    Route::get('/ais/processView/readDataPCVPlantow47/{paramPCV}/{paramUnit}/{paramEmpId}','processViewController@readDataPCVPlantow47');
+    
+    Route::get('/ais/processView/createDataEventPCVPlantow47/{paramPCV}/{paramUnit}/{paramEmpId}/{paramFromDate}/{paramToDate}','processViewController@createDataEventPCVPlantow47');
+    Route::get('/ais/processView/readDataEventPCVPlantow47/{paramPCV}/{paramUnit}/{paramEmpId}','processViewController@readDataEventPCVPlantow47');
+    //Plantow47 END
     
     //process view end
     
@@ -226,6 +246,11 @@ Route::post('/ajax/post', function () {
     Route::get('/ais/Test/trendDashboard', function(){
         return view('ais.test-trend');
     });
+    Route::get('/ais/Test/servProduction', function(){
+        return view('ais.servProduction');
+    });
+    Route::get('/ais/processView/testMultiConnection/','processViewController@testMultiConnection');
+    
         /*trend service end*/
     
     //Test GIT ADFASDFNONG THIS FLIE OK 001 srrssr

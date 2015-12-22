@@ -3,22 +3,24 @@
  
 <script src="/Controller/cListLeftPoint.js"></script>
 
+
 <!-- $_GET['paramTrendID'] -->
 <!-- list point start-->
     <li class="list-group-item ">
        <div class='row'>
             <div class='col-md-10 col-sm-10 col-xs-10 '>
                     <div class="row ">
-                    <div class='col-md-12  col-sm-12 col-xs-12' id='btnPoint1'>
+                    <div class='col-md-12  col-sm-12 col-xs-12' id='btnPoint-<?=$_GET['index']?>'>
                         <div  id='labelTitle'>
                             <!-- <span class="label label-success" >1</span> Point1-->
                             <!-- btn seting grach1 start-->
                             
-                            <button id='<?=$_GET['point']?>'  type="button" style='background: <?=$_GET['colorFlatTheme']?>;color:white;' class="btn  btn-xs btnSetingPoint" data-container="body" 
-                                data-toggle="popover" data-placement="bottom" title="Point Seting"  data-html="true"
+                            <button id='<?=$_GET['point']?>'  type="button" style='background: <?=$_GET['colorFlatTheme']?>;color:white;' class="btn  btn-xs btnSetingPoint btnSetingPoint-<?=$_GET['point']?>" data-container="body" 
+                                data-toggle="popover" data-placement="bottom" title="Event Seting"  data-html="true"
                                 data-content="
                                  
-                                <table class='table '>
+                               
+                                <table class=''>
                                     <!-- 
                                     <tr>
                                         <td colspan='2'>
@@ -33,23 +35,23 @@
                                         </td>
                                        
                                     </tr>
-                                     -->
+                                    
                                     <tr>
                                         <td colspan='2'>
                                          <b> Show Event</b>
                                         </td>
                                        
                                     </tr>
-                                    
+                                     -->
                                     <tr>
                                         <td colspan='2'>
-                                            <input type='checkbox' name='pointEvent' class='pointEvent' id='event-<?=$_GET['point']?>' value='event'>&nbsp;Event
-                                            &nbsp; <input type='checkbox' class='pointEvent' name='pointEvent' id='action-<?=$_GET['point']?>' value='action'>&nbsp;Action
-                                            &nbsp;<input type='checkbox' class='pointEvent' name='pointEvent' id='vpser-<?=$_GET['point']?>' value='vpser'>&nbsp;VPSER
+                                            <input type='checkbox' name='pointEvent' class='pointEvent i-checks' id='event-<?=$_GET['point']?>-<?=$_GET['paramTrendID']?>' value='event'>&nbsp;Event
+                                            &nbsp; <input type='checkbox' class='pointEvent i-checks' name='pointEvent' id='action-<?=$_GET['point']?>-<?=$_GET['paramTrendID']?>' value='action'>&nbsp;Action
+                                            &nbsp;<input type='checkbox' class='pointEvent i-checks' name='pointEvent' id='vpser-<?=$_GET['point']?>-<?=$_GET['paramTrendID']?>' value='vpser'>&nbsp;VPSER
                                         </td>
                                       
                                     </tr>
-                                    
+                                     <!-- 
                                      <tr>
                                         <td colspan='2'>
                                           <b> Set Scale</b>
@@ -62,25 +64,28 @@
                                         </td>
                                        
                                     </tr>
+                                   
                                     <tr>
-                                        <td >
-                                        Max Scale
+                                        <td  colspan='2'>
+                                       <span style='float:left; width:63px;'> Max Scale</span>
+                                       <span style='float:left; width:100px;'> <input type='text' id='maxScale-<?=$_GET['point']?>-<?=$_GET['paramTrendID']?>' name='maxScale-<?=$_GET['point']?>-<?=$_GET['paramTrendID']?>'  class='form-control input-sm' style='width:40px;' ></span>
                                         </td>
-                                        <td >
-                                        <input type='text'>
-                                        </td>
+                                        
                                        
                                     </tr>
-                                    <tr>
+                                     -->
+                                    <tr class='btnArea' >
                                         <td colspan='2' >
+                                            <div style='padding:5px;'>
                                             <button class='btn btn-primary btn-xs  btnOkSetingPoint' id='psOk-<?=$_GET['point']?>' type='button'>
-                                                <i class='fa fa-save'></i>&nbsp;
+                                                <!-- <i class='fa fa-save'></i>&nbsp; -->
                                                OK
                                             </button>
-                                             <button class='btn btn-primary btn-xs  btnCancelSetingPoint' id='psCancel-<?=$_GET['point']?>' type='button'>
-                                                <i class='fa fa-power-off'></i>&nbsp;
+                                             <button class='btn btn-white btn-xs  btnCancelSetingPoint' id='psCancel-<?=$_GET['point']?>' type='button'>
+                                                <!--  <i class='fa fa-power-off'></i>&nbsp;-->
                                                Cancel
                                             </button>
+                                            </div>
                                         </td>
                                     </tr>
                                     
@@ -148,7 +153,7 @@
        </div>
     </li>
     <div style='display: none;'>
-        <div class='paramEmbedArea' id='paramEmbedArea-<?=$_GET['point']?>'>
+        <div class='paramEmbedArea' id='paramEmbedArea-<?=$_GET['point']?>-<?=$_GET['paramTrendID']?>'>
             
         </div>
     </div>
