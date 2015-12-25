@@ -67,6 +67,7 @@ $resultArray = array();
     /*Create File*/
     $paramTrendID=$_GET['paramTrendID'];
     $strFileName = "fileTrend/trendJson-$paramTrendID.txt";
+    chmod($strFileName, 0755);
     $objCreate = fopen($strFileName, 'w');
     if($objCreate)
     {

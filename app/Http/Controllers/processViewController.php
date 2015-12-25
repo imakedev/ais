@@ -14,16 +14,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Input;
- use Illuminate\Support\Facades\DB;
- use Illuminate\Pagination\LengthAwarePaginator;
- use Log;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Log;
+
 
 class processViewController  extends Controller{
-    
-    
-   
-    
-    
+ 
     public function createDataPCVSteam47($paramPCV,$paramUnit,$paramEmpId,$paramFromDate,$paramToDate){
     
         Log::info("Into createDataPCVSteam47");
@@ -304,10 +301,10 @@ AND (ois_event LIKE '%L8%' or ois_event LIKE '%L4%' or ois_event LIKE '%L5%')
     public function testMultiConnection(){
         Log::info("Into testMultiConnection");
         
+       
       $query="select * from books ";
       $reslutQuery = DB::connection('mysql_ais_pd')->select($query);
-      //$reslutQuery = DB::select($query);
-      return json_encode($reslutQuery);
+
     }
    
 }

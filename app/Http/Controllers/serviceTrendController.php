@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Input;
 
 class serviceTrendController  extends Controller{
     
-    
+    public function __construct(){
+        //$numberHasZero="";
+    }
     public function getDataHru($point,$unit,$startTime,$endTime){
         
         Log::info("Into getDataHru");
@@ -132,13 +134,261 @@ class serviceTrendController  extends Controller{
     
     
     /*##################### GET DATA SECOND END ######################*/
-    public function readDataSecondu($folderName,$fileName,$point){
+    public function addZeroToNumber($number){
+     
+    	if(intval($number)==0){
+    	    return "00";
+    	}else if(intval($number)==1){
+    	    return "01";
+    	}else if(intval($number)==2){
+    	    return "02";
+    	}else if(intval($number)==3){
+    	    return "03";
+    	}else if(intval($number)==4){
+    	    return "04";
+    	}else if(intval($number)==5){
+    	    return "05";
+    	}else if(intval($number)==6){
+    	    return "06";
+    	}else if(intval($number)==7){
+    	    return "07";
+    	}else if(intval($number)==8){
+    	    return "08";
+    	}else if(intval($number)==9){
+    	    return "09";
+    	}else{
+    	    return $number;
+    	}
+        
+    	//return null;
+	
+    }
+    public function createDataSecondu($dateTime,$point,$trendID,$paramEmpId){
+        Log::info("Into createDataSecondu");
+        //0820140520/08201405200000
+      
+        
+   
+        $vdateArray= explode(" ",$dateTime);
+        $vdateArray2 = $vdateArray[0];
+        $vdate = explode("-",$vdateArray2);
+        $vYear =$vdate[0];
+        $vMonth=$vdate[1];
+        $vDay  =$vdate[2];
+        /*
+        echo "1--------".$vYear."<br>";
+        echo "2--------".$vMonth."<br>";
+        echo "3--------".$vDay."<br>";
+        */
+        $vtime= explode(":",$vdateArray[1]);
+
+        
+        $vHour   = $vtime[0];
+        $vMinute = $vtime[1];
+        $vSecond = $vtime[2];
+       /*
+        echo "1--------".$vHour."<br>";
+        echo "2--------".$vMinute."<br>";
+        echo "2--------".$vSecond."<br>";
+         
+        */
+        $folderName=$vYear.$vMonth.$vDay;
+        $startTime=$vYear.$vMonth.$vDay.$vHour."0000";
+        $endTime=$vYear.$vMonth.$vDay.$vHour.$vMinute."00";
+        /*
+        echo $folderName."<br>";
+        echo $startTime."<br>";
+        echo $endTime."<br>";
+        echo "-----<br>";
+        echo $this->addZeroToNumber("1")."<br>";
+        */
+        $fileName="";
+        /* define varible*/
+        $dataJson="";
+        $p = array();
+       
+        $pointArray=explode(",",$point);
+        for($m=0;$m<count($pointArray);$m++){
+             
+            array_push($p,substr($pointArray[$m],1));
+        }
+       
+        $dataJsonObject="";
+        for($i=0;$i<$vMinute;$i++){
+            $j=0;
+            /*
+            $hd="";
+            $data="";
+            $ar="";
+            $trend_data=[];
+            $arr=[];
+            $data="";
+            $data=[];
+            */
+            
+            $dataJson="";
+            $fileName=$vYear.$vMonth.$vDay.$vHour.$this->addZeroToNumber($i)."00";
+            //echo $vYear.$vMonth.$vDay.$vHour.$this->addZeroToNumber($i)."00";
+            //echo $fileName;
+            //echo "<br>loop=$i<br>";
+            
+            
+            /*read each file start */
+            
+            $url = "./webservice/0820140520/0820140520".$this->addZeroToNumber($i)."00.dat";
+           // echo $url."<br>";
+            //$url = "./webservice/$folderName/$fileName.dat";
+           /*
+            $pointArray=explode(",",$point);
+            for($i=0;$i<count($pointArray);$i++){
+                 
+                array_push($p,substr($pointArray[$i],1));
+            }
+             */
+            $hd = fopen($url,"rb");
+            $data = fread($hd,6);
+            $ar = unpack("vid/fdata",$data);
+            fseek($hd,($ar['data']+1)*6);
+            
+            //print_r($ar);
+            if($i==0){
+            $dataJson.="{";
+            }
+            while (!feof($hd)){
+                
+                $data = fread($hd,6);
+                //echo("strlen(data)");
+                //echo strlen($data);
+                if(strlen($data)!=6) {
+                    //echo "length ".strlen($data);
+                    break;
+                }
+         
+                $ar = unpack("vid/fdata",$data);
+                
+                //print_r($ar);
+                
+                if($j==0){
+                
+                    $dataJson.= "\"sec-".$ar['id']."-".$ar['data']."-".$vYear.$vMonth.$vDay.$vHour.$this->addZeroToNumber($i).$this->addZeroToNumber($ar['id'])."\":";
+                
+                }else{
+                
+                    $dataJson.= ",\"sec-".$ar['id']."-".$ar['data']."-".$vYear.$vMonth.$vDay.$vHour.$this->addZeroToNumber($i).$this->addZeroToNumber($ar['id'])."\":";
+                
+                }
+                
+                $dataJson.= "[";
+                
+                for($l=0;$l<=$ar['data']-1;$l++){
+                   
+                    $data = fread($hd,6);
+                    $arr = unpack("vid/fdata",$data);
+                   // print_r($ar);
+                    $trend_data[$arr['id']]=$arr['data'];
+                
+                }
+                
+                $dataJson.= "{";
+                
+                $k=0;
+                foreach ($p as $key=>$value) {
+                 
+                    if($k==0){
+                        //     {"D10":5, "D12":4},
+                        // echo "Point : " .$p[$key] .", data : ".$trend_data[$value]."<br />\n";
+                        $dataJson.= "\"D$p[$key]\":".$trend_data[$value];
+                    }else{
+                        $dataJson.= ",\"D$p[$key]\":".$trend_data[$value]."";
+                    }
+                    $k++;
+                }
+                $dataJson.= "}";
+                
+                $dataJson.= "]";
+                
+                 $j++;
+                
+            }
+            
+            //$dataJson.="}";
+           // echo $dataJson;
+           if($i==0){
+               $dataJsonObject.="".$dataJson;
+           }else{
+               $dataJsonObject.=",".$dataJson;
+           }
+            
+          
+            /*read each file end*/
+        
+        
+        }
+        
+        $dataJsonObject=$dataJsonObject.="}";
+        //echo $dataJsonObject;
+        fclose($hd);
+        /*Create File*/
+        
+        $strFileName = "webservice/fileTrend/trendJsonSecondu-$trendID-$paramEmpId.txt";
+        $objCreate = fopen($strFileName, 'w');
+        if($objCreate)
+        {
+            //echo '["createJsonSuccess"]';
     
+        
+            $strFileName = "webservice/fileTrend/trendJsonSecondu-$trendID-$paramEmpId.txt";
+            $objFopen = fopen($strFileName, 'w');
+            $strText1 = json_encode($dataJsonObject);
+            fwrite($objFopen, $strText1);
+            if($objFopen)
+            {
+                echo '["createJsonSuccess"]';
+            }
+            else
+            {
+                echo '["error"]';
+            }
+            fclose($objFopen);
+        
+          
+        
+        }else{
+            echo "File Not Create.";
+        }
+        
+        
+        
+       
+       
+         //http://localhost:9999/ais/serviceTrend/createDataSecondu/2014-05-01%2002:10:00/D1,D2,D3,D4,D5,D7/88/3
+    }
+    
+    public function readDataSecondu($trendID,$paramEmpId){
+        
         Log::info("Into readDataSecondu");
         
+        $strFileName = "webservice/fileTrend/trendJsonSecondu-$trendID-$paramEmpId.txt";
+       
+        $objFopen = fopen($strFileName, 'r');
+        if ($objFopen) {
+            while (!feof($objFopen)) {
+                $file = fgets($objFopen, 4096);
+                echo $file;
+                //return json_encode($file);
+            }
+            fclose($objFopen);
+        }
+        
+        //http://localhost:9999/ais/serviceTrend/readDataSecondu/88/3
+    }
+    public function readDataSecondu2($startTime,$endTime,$point){
+    
+        Log::info("Into readDataSecondu");
+        //0820140520/08201405200000
         $dataJson="";
-        //$url = './webservice/0820140520/08201405200000.dat';
-        $url = "./webservice/$folderName/$fileName.dat";
+        $url = './webservice/0820140520/08201405200000.dat';
+        //$url = "./webservice/$folderName/$fileName.dat";
         $p = array();
         $pointArray=explode(",",$point);
         for($i=0;$i<count($pointArray);$i++){

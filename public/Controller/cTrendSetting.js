@@ -117,7 +117,7 @@ var bindGridPoinList = function(){
 				async:false,
 				success:function(data){
 					$("#listAllTrendGroupArea").html(dropDownList(data,"listAllTrendGroup"));
-	
+					$("#listAllTrendGroup").val("900002");
 				}
 			});
 		}

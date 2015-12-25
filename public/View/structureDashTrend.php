@@ -40,7 +40,7 @@
                       
                         
                             <div class='textExpandFocus'>
-                                <input type="text" class="form-control input-sm expandFocus " id='expandFocus-<?=$_GET['paramTrendID']?>' placeholder="4 Hour">
+                                <input type="text" class="form-control input-sm expandFocus " id='expandFocus-<?=$_GET['paramTrendID']?>' >
                             </div>
                         
                         
@@ -178,7 +178,7 @@
                                 <label class='col-lg-3 control-label textAlign'>นาที</label>
                                 <div class='col-lg-9 scaleTimeR'>
                                    
-                                       <input type='text' id='minute-<?=$_GET['paramTrendID']?>' value='10' class='form-control input-sm '>
+                                       <input type='text' id='minute-<?=$_GET['paramTrendID']?>' value='02' class='form-control input-sm '>
                                     
                                 </div>
                            </div>

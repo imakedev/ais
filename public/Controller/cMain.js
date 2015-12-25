@@ -1,4 +1,8 @@
 //Variable Global
+var rangHour=["1", "2", "3", "4", "6","8", "12", "16", "20", "24"];
+var rangSecond=["1", "2", "3", "4", "5","6", "7", "8", "9", "10"];
+var startTimeDisplay=0;
+var startDayDisplay=0;
 var dataEventForTrend="";
 /* loading start */
 
@@ -53,6 +57,34 @@ function addCommas(nStr)
 	return x1 + x2;
 }
 //==================end====================================
+
+//============== Function convest Date Time Non Dash ==============//
+//20140501020130 to 2014-05-01 02:01:30
+function convestDateTimeNonDash(dateTimeNonDash){
+	
+	var dateYear="";
+	var dateMonth="";
+	var dateDay="";
+	var timeHour="";
+	var timeMinute="";
+	var timeSecond="";
+	var dateTime="";
+	
+
+	dateYear=dateTimeNonDash.substring(0,4);
+	dateMonth=dateTimeNonDash.substring(4,6);
+	dateDay=dateTimeNonDash.substring(6,8);
+	
+	timeHour=dateTimeNonDash.substring(8,10);
+	timeMinute=dateTimeNonDash.substring(10,12);
+	timeSecond=dateTimeNonDash.substring(12,14);
+	
+
+	dateTime=dateYear+"-"+dateMonth+"-"+dateDay+" "+timeHour+":"+timeMinute+":"+timeSecond;
+	return dateTime;
+}
+//============== end ==============//
+
 //============== Function to curent date ==============//
 function currentDateTime(){
 	 var d = new Date();
@@ -265,7 +297,22 @@ function setFormatDateTime(dateTime){
 //alert(setFormatDateTime("2014-05-01 05:00:00"));
 
 //==================end====================================
-
+//ex  setFormatDataPointFn( Object { D1=2114.2158203125,  D2=59.438171386719,  D3=45.360107421875,  more...});
+//convert to "D32":"149.74","D33":"149.74"
+function setFormatDataPointFn(data){
+	var dataObject="";
+	var i=0;
+	$.each(data,function(index2,indexEntry2){
+		//console.log(index2);
+		if(i==0){
+			dataObject+="\""+index2+"\":\""+indexEntry2+"\"";	
+		}else{
+			dataObject+=",\""+index2+"\":\""+indexEntry2+"\"";	
+		}
+		i++;
+	});
+	return dataObject;
+}
 //============== Function interval general ==============//
 function intervalDelFn(dateTimeHis,interval,units){
 	
@@ -307,7 +354,7 @@ function intervalAddFn(dateTimeHis,interval,units){
 	var minutesDel=dateTimeInterval.getMinutes();
 	var secondsDel=dateTimeInterval.getSeconds();
 	
-	dateTimeIntervalFormat=yearDel+"-"+monthDel+"-"+dayDel+" "+HoursDel+":"+minutesDel+":"+secondsDel;
+	dateTimeIntervalFormat=yearDel+"-"+addZeroToNumber(monthDel)+"-"+addZeroToNumber(dayDel)+" "+addZeroToNumber(HoursDel)+":"+addZeroToNumber(minutesDel)+":"+addZeroToNumber(secondsDel);
 	return dateTimeIntervalFormat;
 	
 }
