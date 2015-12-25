@@ -214,13 +214,19 @@ Route::post('/ajax/post', function () {
     Route::get('/ais/serviceTrend/readDataMonthu/','serviceTrendController@readDataMonthu');
     
     
-    Route::get('/ais/serviceTrend/readDataSecondu/{folderName}/{fileName}/{point}/','serviceTrendController@readDataSecondu');
+    Route::get('/ais/serviceTrend/readDataSecondu/{trendID}/{paramEmpId}/','serviceTrendController@readDataSecondu');
+    Route::get('/ais/serviceTrend/createDataSecondu/{dateTime}/{point}/{trendID}/{paramEmpId}/','serviceTrendController@createDataSecondu');
+    
+    
+    
     Route::get('/ais/serviceTrend/readEventDataTrend/{point}/{unit}/{startTime}/{endTime}/','serviceTrendController@readEventDataTrend');
     Route::get('/ais/serviceTrend/readEventDataTrendByEvent/{point}/{unit}/{startTime}/{endTime}/{event}/','serviceTrendController@readEventDataTrendByEvent');
     
     
     
     /*trend service end*/
+    
+    
     
     //process view start 
     //Steam47 START
@@ -250,6 +256,8 @@ Route::post('/ajax/post', function () {
         return view('ais.servProduction');
     });
     Route::get('/ais/processView/testMultiConnection/','processViewController@testMultiConnection');
+    Route::get('/ais/processView/destinationSearch/','ParentRegionList@destinationSearch');
+    
     
         /*trend service end*/
     
