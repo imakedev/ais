@@ -4,6 +4,7 @@ var rangSecond=["1", "2", "3", "4", "5","6", "7", "8", "9", "10"];
 var startTimeDisplay=0;
 var startDayDisplay=0;
 var dataEventForTrend="";
+
 /* loading start */
 
 function startLoading(){
