@@ -694,7 +694,8 @@ function tooltipCustom(paramTrendID){
 	
 	$(document).on("click",".btnScaleTimeCancel",function(event){
 	    //$("#btnScaleTimeArea").click();
-		$(".btnScaleTimeArea").click();
+		//$(".btnScaleTimeArea").click();
+		$(".popover").popover('hide');
 	});
 	 
 	 $(document).on("click",".btnScaleTime",function(event){
@@ -703,7 +704,8 @@ function tooltipCustom(paramTrendID){
 		paramTrendID=paramTrendID[1];
 		 
 		startUpFn('N',paramTrendID);
-		$(".btnScaleTimeArea").click();
+		//$(".btnScaleTimeArea").click();
+		$(".popover").popover('hide');
 		
 	 });
 	 
@@ -843,8 +845,8 @@ function tooltipCustom(paramTrendID){
 		 //set max scale here end.
 		 
 		 
-		 $(".btnSetingPoint-"+id+"").click();
-		 //$(".popover").popover('hide');
+		 //$(".btnSetingPoint-"+id+"").click();
+		 $(".popover").popover('hide');
 		 
 		 
 	 });
@@ -852,10 +854,11 @@ function tooltipCustom(paramTrendID){
 	 
 	 
 	 $(document).on("click",".btnCancelSetingPoint",function(event){
-		// $(".popover").popover('hide');
+		
 		 var id=this.id.split("-");
 		 id=id[1];
-		 $(".btnSetingPoint-"+id+"").click();
+		 //$(".btnSetingPoint-"+id+"").click();
+		 $(".popover").popover('hide');
 	 });
 	 
 	 //get param embed value
@@ -959,10 +962,11 @@ function tooltipCustom(paramTrendID){
 	 
 	 
 	 
-	 function startUpFn(paramInitail,paramTrendID){
+	 function startUpFn(paramInitail,paramTrendID,paramScaleTime,paramHour,paramMinute,paramFromDate,paramToDate){
 			
 			
-			
+			//alert(paramHour);
+			//alert(paramMinute);
 			
 			var fromDate="";
 			var toDate="";
@@ -972,9 +976,13 @@ function tooltipCustom(paramTrendID){
 				toDate="2014-05-02 23:59:59";
 				
 			}else{
-				
-				fromDate=$("#dateFrom-"+paramTrendID+"").val()+" 00:00:00";
-				toDate=$("#dateTo-"+paramTrendID+"").val()+" 23:59:59";
+				if((paramFromDate!=undefined) || (paramToDate!=undefined)){
+					fromDate=paramFromDate;
+					toDate=paramToDate;
+				}else{
+					fromDate=$("#dateFrom-"+paramTrendID+"").val()+" 00:00:00";
+					toDate=$("#dateTo-"+paramTrendID+"").val()+" 23:59:59";
+				}
 			}
 			
 
@@ -982,10 +990,19 @@ function tooltipCustom(paramTrendID){
 			var paramDateEmbed="";
 			paramDateEmbed+="<input type='hidden' name='paramFromDate-"+paramTrendID+"' id='paramFromDate-"+paramTrendID+"' class='paramDateEmbed-"+paramTrendID+"' value='"+fromDate+"'>";
 			paramDateEmbed+="<input type='hidden' name='paramToDate-"+paramTrendID+"' id='paramToDate-"+paramTrendID+"' class='paramDateEmbed-"+paramTrendID+"' value='"+toDate+"'>";
-			paramDateEmbed+="<input type='hidden' name='paramScaleTime-"+paramTrendID+"' id='paramScaleTime-"+paramTrendID+"' class='paramDateEmbed-"+paramTrendID+"' value='"+$("#scaleTime-"+paramTrendID+"").val()+"'>";
-			paramDateEmbed+="<input type='hidden' name='paramHour-"+paramTrendID+"' id='paramHour-"+paramTrendID+"' class='paramDateEmbed-"+paramTrendID+"' value='"+$("#hour-"+paramTrendID+"").val()+"'>";
-			paramDateEmbed+="<input type='hidden' name='paramMinate-"+paramTrendID+"' id='paramMinate-"+paramTrendID+"' class='paramDateEmbed-"+paramTrendID+"' value='"+$("#minute-"+paramTrendID+"").val()+"'>";
 			
+			if(paramScaleTime!=undefined){
+				paramDateEmbed+="<input type='hidden' name='paramScaleTime-"+paramTrendID+"' id='paramScaleTime-"+paramTrendID+"' class='paramDateEmbed-"+paramTrendID+"' value='"+paramScaleTime+"'>";
+			}else{
+				paramDateEmbed+="<input type='hidden' name='paramScaleTime-"+paramTrendID+"' id='paramScaleTime-"+paramTrendID+"' class='paramDateEmbed-"+paramTrendID+"' value='"+$("#scaleTime-"+paramTrendID+"").val()+"'>";
+			}
+			if((paramHour!=undefined) ||(paramMinute!=undefined )){
+				paramDateEmbed+="<input type='hidden' name='paramHour-"+paramTrendID+"' id='paramHour-"+paramTrendID+"' class='paramDateEmbed-"+paramTrendID+"' value='"+paramHour+"'>";
+				paramDateEmbed+="<input type='hidden' name='paramMinate-"+paramTrendID+"' id='paramMinate-"+paramTrendID+"' class='paramDateEmbed-"+paramTrendID+"' value='"+paramMinute+"'>";
+			}else{
+				paramDateEmbed+="<input type='hidden' name='paramHour-"+paramTrendID+"' id='paramHour-"+paramTrendID+"' class='paramDateEmbed-"+paramTrendID+"' value='"+$("#hour-"+paramTrendID+"").val()+"'>";
+				paramDateEmbed+="<input type='hidden' name='paramMinate-"+paramTrendID+"' id='paramMinate-"+paramTrendID+"' class='paramDateEmbed-"+paramTrendID+"' value='"+$("#minute-"+paramTrendID+"").val()+"'>";
+			}
 			$("body").append(paramDateEmbed);
 
 			var pointId =getDataFromPointEmbed("pointId");
@@ -996,7 +1013,10 @@ function tooltipCustom(paramTrendID){
 			//create file for chart
 			
 			var scaleTime=$("#paramScaleTime-"+paramTrendID+"").val();
+			
 			//alert(scaleTime);
+			//alert("2="+scaleTime);
+			
 			if(scaleTime=='Minute'){
 				
 				
@@ -1059,10 +1079,13 @@ function tooltipCustom(paramTrendID){
 			
 			callCreateFileServiceChart(fromDate,toDate,pointDataId,'1',"0"+$("#paramUnitEmbed-"+paramTrendID+"").val(),scaleTime,paramTrendID);
 			
+			
+			
 			//set title between for display
 			//alert(fromDate);
 			setScaleDateTimeFn(fromDate,toDate,paramTrendID);
 			//show date for left layout
+			$(".popover").popover('hide');
 			
 			$("#dateInDataDisplay-"+paramTrendID).html(convertDateTh(toDate));
 			
@@ -1311,14 +1334,14 @@ function tooltipCustom(paramTrendID){
 					$(".editTrendPoint").on("click",function(){
 						
 						//alert 
-						alert("อยู่ในระหว่างการปรับปรุง...");
-						return false;
-					
-						var paramTrendName=$("#paramTrendNameEmbed").val();
-						var paramUnit=$("#paramUnitEmbed").val();
+						//alert("อยู่ในระหว่างการปรับปรุง...");
+						//return false;
 						var paramTrendID=$("#trendTabActive").val();
+						var paramTrendName=$("#paramTrendNameEmbed-"+paramTrendID).val();
+						var paramUnit=$("#paramUnitEmbed-"+paramTrendID).val();
 						
-						$("#editTrendName").html(paramTrendName);
+						
+						$("#editTrendName-"+paramTrendID).html(paramTrendName);
 						//editUnit
 						//check selected option
 						var val1 =paramUnit;
@@ -1339,20 +1362,17 @@ function tooltipCustom(paramTrendID){
 						
 						
 						$("select#editUnit").change(function(){
-							editTrendPointFn(paramTrendID,$(this).val());
-							
-							 $("#paramUnitEmbed-"+paramTrendID+"").remove();
+							  editTrendPointFn(paramTrendID,$(this).val());
+							  $("#paramUnitEmbed-"+paramTrendID+"").remove();
 							  var paramUnit="";
 							  paramUnit+="<input type='hidden' id='paramUnitEmbed-"+paramTrendID+"' name='paramUnitEmbed-"+paramTrendID+"' value='"+$(this).val()+"'>";
 							  $("body").append(paramUnit);
-							  
-							
 						});
 						
 						
 						
 						 $("#btnEditPlotGraph").off("click");
-						 $("#btnEditPlotGraph").click(function(){
+						 $("#btnEditPlotGraph").on("click",function(){
 							  // plotGraphFn();
 							  // plotGraphFn('Initial','N',$("#paramTrendIDEmbed").val());
 							 var paramTrendID = $("#trendTabActive").val();
@@ -1382,9 +1402,24 @@ function tooltipCustom(paramTrendID){
 							  $("body").append(paramPoint);
 							  //embed point start
 							  var pointId =getDataFromPointEmbed("pointId");
-							  callDataLayoutPointRight(pointId,paramTrendID);
-							  //alert(scale);
-							  /*Anable start slideScaleFn(paramTrendID,scale); */
+							  
+							  
+							  //Create Data Here Start.
+							 // alert($("#paramScaleTime-"+paramTrendID).val());
+							  
+							
+							  plotGraphFn('Edit','N',paramTrendID,$("#paramScaleTime-"+paramTrendID).val());
+							  /*
+							  if($("#paramScaleTime-"+paramTrendID).val()=="Second"){
+								  alert("Second");
+								  
+							  }else{
+								  alert("Minute");
+								  plotGraphFn('Edit','N',$("#paramTrendIDEmbed").val());
+								  //callDataLayoutPointRight(pointId,paramTrendID);
+							  }
+							  */
+							  //Create Data Here End.
 							  
 							  $('#editTrendPointModal').modal('hide');
 							  
@@ -1394,6 +1429,8 @@ function tooltipCustom(paramTrendID){
 						
 					});
 					//EDIT POINT END
+					
+					
 					
 					 
 		}
