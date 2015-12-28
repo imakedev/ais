@@ -1,3 +1,4 @@
+var paramTrendID="";
 //function display expand focus start
 	function setScaleDateTimeFn(startDate,endDate,paramTrendID){
 		//default value scaleDateTimeArea start
@@ -928,8 +929,8 @@ var createFileServiceChart={
 }
 //readJsonFilter.scaleTypeSecond('88','3','2014-05-01 02:00:00','2014-05-01 02:01:00');
 
-var plotGraphFn=function(paramAction,paramTest,paramTrendID){
-	   
+var plotGraphFn=function(paramAction,paramTest,paramTrendID,paramScaleTime){
+	   //alert(paramTrendID);
 	   var point="";
 	   if(paramTest=="Y"){
 		   
@@ -949,17 +950,18 @@ var plotGraphFn=function(paramAction,paramTest,paramTrendID){
 		  }); 
 	   }
 		  
-		  $(".paramPointEmbed-"+paramTrendID+"").remove();
-		  var paramPoint="";
-		  paramPoint+="<input type='hidden' class='paramPointEmbed-"+paramTrendID+"' id='paramPointEmbed-"+paramTrendID+"' name='paramPointEmbed-"+paramTrendID+"' value='"+point+"'>";
-		  paramPoint+="<input type='hidden' class='paramPointEmbed-"+paramTrendID+"' id='paramPointAllEmbed-"+paramTrendID+"' name='paramPointAllEmbed-"+paramTrendID+"' value='"+point+"'>";
 		  
-		  
-		  $("body").append(paramPoint);
 			  
 			
 		  //if plot grach is success crate new tab
 		 if(paramAction!='Edit'){
+			 
+		  $(".paramPointEmbed-"+paramTrendID+"").remove();
+		  var paramPoint="";
+		  paramPoint+="<input type='hidden' class='paramPointEmbed-"+paramTrendID+"' id='paramPointEmbed-"+paramTrendID+"' name='paramPointEmbed-"+paramTrendID+"' value='"+point+"'>";
+		  paramPoint+="<input type='hidden' class='paramPointEmbed-"+paramTrendID+"' id='paramPointAllEmbed-"+paramTrendID+"' name='paramPointAllEmbed-"+paramTrendID+"' value='"+point+"'>";
+		  $("body").append(paramPoint);
+			  
 		  var newTab="";
 		  newTab+="<li class=\"titleTab \" id='tabTrendId-"+paramTrendID+"'><a href=\"#tab-"+paramTrendID+"\" data-toggle=\"tab\" aria-expanded=\"false\"><b>"+$("#trendName").html()+"</b></a></li>";
 		  $("#tabTrendTitle").append(newTab);
@@ -988,14 +990,24 @@ var plotGraphFn=function(paramAction,paramTest,paramTrendID){
 			  
 			 
 			  
-		 }//action 
-		 
+		 }
 			 // $('[data-toggle="popover"]').popover();
 			  $('#editTrendPointModal').modal('hide');
 			  
 			  
 			  //START UP TREND 
-			  startUpFn("Y",paramTrendID); 
+			 
+			 var fromDate="";
+			 var toDate="";
+			 $("#paramToDate-"+paramTrendID).val();
+			 if(($("#paramFromDate-"+paramTrendID).val()!=undefined) ||($("#paramToDate-"+paramTrendID).val()!=undefined)){
+				 fromDate=$("#paramFromDate-"+paramTrendID).val();
+				 toDate=$("#paramToDate-"+paramTrendID).val();
+			 }else{
+				 fromDate=currentDate()+" 00:00:00";
+				 toDate=currentDate()+" 23:59:59";
+			 }
+			  startUpFn("N",paramTrendID,paramScaleTime,$("#paramHour-"+paramTrendID).val(),$("#paramMinate-"+paramTrendID).val(),fromDate,toDate); 
 			  
 }
 
@@ -1377,10 +1389,16 @@ $(document).ready(function(){
 	
 	
 	/*click create trend graph start*/
+	$("#downloadData").on("click",function(){
+		alert("อยู่ในระหว่างพัฒนา...");
+		return false;
+	});
+	
 	var countTrendSeting=0;
 	$("[href='#trendSeting']").click(function(){
 	
-		if(countTrendSeting==0){
+		//if(countTrendSeting==0){
+			
 		$.ajax({
 			url:"/View/trend_setting.php",
 			type:"html",
@@ -1391,10 +1409,12 @@ $(document).ready(function(){
 				
 			}
 		});
+		/*
 		}else{
 			alert("อยู่ในระหว่างการปรับปรุง...");
 			return false;
 		}
+		*/
 		countTrendSeting++;
 	});
 	setTimeout(function(){
@@ -1412,6 +1432,27 @@ $(document).ready(function(){
 		id=id[1];
 		$("ul#tabTrendTitle").find("a[href='#tab-"+id+"']").remove();
 		$("#tabTrendContent>#tab-"+id).remove();
+		
+		
+	
+		
+		
+
+		setTimeout(function(){
+			$("[href='#trendSeting']").click();
+			
+			//delete embed param start
+			//alert(id);
+			$("#paramDateEmbed-"+id).remove();
+			$("#paramPointEmbed-"+id).remove();
+			$("#paramTrendNameEmbed-"+id).remove();
+			$("#paramUnitEmbed-"+id).remove();
+			$("#paramTrendIDEmbed-"+id).remove();
+			
+		});
+
+			
+		
 		
 		//delete file ajax start
 		/*
